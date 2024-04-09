@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClientGoldRushProvider } from "@/utils/store";
 import { LayoutProps } from "@/.next/types/app/layout";
 import "@covalenthq/goldrush-kit/styles.css";
+import { Navbar } from "../components/shared";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,10 @@ const RootLayout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <html lang="en">
             <body className={inter.className}>
-                <ClientGoldRushProvider>{children}</ClientGoldRushProvider>
+                <ClientGoldRushProvider>
+                    <Navbar />
+                    {children}
+                </ClientGoldRushProvider>
             </body>
         </html>
     );
