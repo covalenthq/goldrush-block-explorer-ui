@@ -25,7 +25,8 @@ export const Navbar: React.FC = () => {
                 selectChainHandler(chain);
             }
         }
-    }, [searchParams, chains]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchParams, chains, selectedChain]);
 
     const selectChainHandler = useCallback(
         (chain: ChainItem) => {
@@ -34,6 +35,7 @@ export const Navbar: React.FC = () => {
             updatedParams.set(CHAIN_NAME_SEARCH_PARAM, chain.name);
             push(`${pathname}?${updatedParams}`);
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [searchParams, pathname]
     );
 
@@ -58,7 +60,8 @@ export const Navbar: React.FC = () => {
             }
         }
         push(`/${page}/${searchInput}?${searchParams}`);
-    }, [searchInput, selectedChain, searchParams]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchInput, searchParams]);
 
     return (
         <nav className="flex gap-4">

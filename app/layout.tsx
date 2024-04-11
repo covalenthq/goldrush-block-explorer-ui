@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClientGoldRushProvider } from "@/utils/store";
-import { LayoutProps } from "@/.next/types/app/layout";
+import { type LayoutProps } from "@/.next/types/app/layout";
 import "@covalenthq/goldrush-kit/styles.css";
 import { Navbar } from "../components/shared";
 
