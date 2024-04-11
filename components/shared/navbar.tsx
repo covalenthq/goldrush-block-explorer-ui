@@ -43,15 +43,18 @@ export const Navbar: React.FC = () => {
         switch (searchType) {
             case "address": {
                 page = "address";
+                break;
             }
             case "tx": {
-                return push(`/tx/${searchInput}?${searchParams}`);
+                page = "tx";
+                break;
             }
             case "block": {
-                return push(`/block/${searchInput}?${searchParams}`);
+                page = "block";
+                break;
             }
             default: {
-                return push("/404");
+                push(`/404`);
             }
         }
         push(`/${page}/${searchInput}?${searchParams}`);

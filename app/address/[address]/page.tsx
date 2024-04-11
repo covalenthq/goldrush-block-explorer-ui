@@ -3,7 +3,10 @@
 import { MissingChain } from "@/components/shared";
 import { type AddressPageProps } from "@/utils/types/pages.types";
 import { type Chain } from "@covalenthq/client-sdk";
-import { AddressDetailsView, TransactionsList } from "@covalenthq/goldrush-kit";
+import {
+    AddressDetailsView,
+    AddressTransactions,
+} from "@covalenthq/goldrush-kit";
 
 const AddressPage: React.FC<AddressPageProps> = ({
     params: { address },
@@ -21,7 +24,7 @@ const AddressPage: React.FC<AddressPageProps> = ({
                 show_chain_selector={false}
             />
 
-            <TransactionsList
+            <AddressTransactions
                 address={address}
                 chain_name={chain_name as Chain}
             />

@@ -3,7 +3,7 @@
 import { MissingChain } from "@/components/shared";
 import { type BlockPageProps } from "@/utils/types/pages.types";
 import { type Chain } from "@covalenthq/client-sdk";
-import { BlockDetails } from "@covalenthq/goldrush-kit";
+import { BlockDetails, BlockTransactions } from "@covalenthq/goldrush-kit";
 
 const BlockPage: React.FC<BlockPageProps> = ({
     params: { block_height },
@@ -16,8 +16,13 @@ const BlockPage: React.FC<BlockPageProps> = ({
     return (
         <main className="mx-auto w-11/12 p-10">
             <BlockDetails
-                chain_name={chain_name as Chain}
                 height={+block_height}
+                chain_name={chain_name as Chain}
+            />
+
+            <BlockTransactions
+                block_height={+block_height}
+                chain_name={chain_name as Chain}
             />
 
             <a
