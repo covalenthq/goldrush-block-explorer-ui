@@ -1,9 +1,17 @@
+import { type Chain } from "@covalenthq/client-sdk";
+
+export interface HomePageProps {
+    searchParams: {
+        chain_name: Chain;
+    };
+}
+
 export interface AddressPageProps {
     params: {
         address: string;
     };
     searchParams: {
-        chain_name: string;
+        chain_name: Chain;
     };
 }
 
@@ -12,7 +20,7 @@ export interface BlockPageProps {
         block_height: string;
     };
     searchParams: {
-        chain_name: string;
+        chain_name: Chain;
     };
 }
 
@@ -21,6 +29,6 @@ export interface TransactionPageProps {
         tx_hash: string;
     };
     searchParams: {
-        chain_name: string;
+        chain_name: Chain;
     };
 }

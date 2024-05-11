@@ -9,8 +9,8 @@
         "lint": "next lint"
     },
     "dependencies": {
-        "@covalenthq/client-sdk": "^1.0.0",
-        "@covalenthq/goldrush-kit": "^0.5.2",
+        "@covalenthq/client-sdk": "^1.0.1",
+        "@covalenthq/goldrush-kit": "^0.5.5",
         "next": "14.1.3",
         "react": "^18",
         "react-dom": "^18"

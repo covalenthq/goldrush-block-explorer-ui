@@ -2,7 +2,6 @@
 
 import { MissingChain } from "@/components/shared";
 import { type BlockPageProps } from "@/utils/types/pages.types";
-import { type Chain } from "@covalenthq/client-sdk";
 import { BlockDetails, BlockTransactions } from "@covalenthq/goldrush-kit";
 
 const BlockPage: React.FC<BlockPageProps> = ({
@@ -14,25 +13,13 @@ const BlockPage: React.FC<BlockPageProps> = ({
     }
 
     return (
-        <main className="mx-auto w-11/12 p-10">
-            <BlockDetails
-                height={+block_height}
-                chain_name={chain_name as Chain}
-            />
+        <main className="gbk-mx-auto gbk-flex gbk-w-11/12 gbk-flex-col gbk-gap-4 gbk-p-10">
+            <BlockDetails height={+block_height} chain_name={chain_name} />
 
             <BlockTransactions
                 block_height={+block_height}
-                chain_name={chain_name as Chain}
+                chain_name={chain_name}
             />
-
-            <a
-                href="https://etherscan.io/block/19575675"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-10 block text-center underline"
-            >
-                Reference to Etherscan
-            </a>
         </main>
     );
 };

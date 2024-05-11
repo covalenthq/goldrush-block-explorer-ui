@@ -4,7 +4,7 @@ import "./globals.css";
 import { ClientGoldRushProvider } from "@/utils/store";
 import { type LayoutProps } from "@/.next/types/app/layout";
 import "@covalenthq/goldrush-kit/styles.css";
-import { Navbar } from "../components/shared";
+import { Footer, Navbar } from "../components/shared";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,10 +16,13 @@ export const metadata: Metadata = {
 const RootLayout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <html lang="en">
-            <body className={inter.className}>
+            <body
+                className={`${inter.className} gbk-relative gbk-flex gbk-min-h-screen gbk-w-full gbk-flex-col gbk-justify-between`}
+            >
                 <ClientGoldRushProvider>
                     <Navbar />
-                    {children}
+                    <section className="gbk-flex-1 gbk-p-8">{children}</section>
+                    <Footer />
                 </ClientGoldRushProvider>
             </body>
         </html>
