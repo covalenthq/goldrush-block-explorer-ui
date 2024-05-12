@@ -1,3 +1,3 @@
 export { Footer } from "./footer";
-export { MissingChain } from "./missing-chain";
+export { ChainsLoading } from "./chains-loading";
 export { Navbar } from "./navbar";

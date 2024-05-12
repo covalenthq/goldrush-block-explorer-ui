@@ -2,7 +2,7 @@ import { type GRKKitType } from "./utils/types/shared.types";
 
 export const GRKKit: GRKKitType = {
     brand: {
-        title: "Test",
+        title: "GoldRush",
         subtitle: "Block Explorer",
         logo_url: "",
     },

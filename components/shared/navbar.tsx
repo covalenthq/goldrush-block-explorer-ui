@@ -79,7 +79,8 @@ export const Navbar: React.FC = () => {
                 break;
             }
             default: {
-                push(`/404`);
+                push(`/404?${searchParams}`);
+                return;
             }
         }
         push(`/${page}/${searchInput}?${searchParams}`);
@@ -90,7 +91,7 @@ export const Navbar: React.FC = () => {
         <nav className="bg-background-light text-foreground-light dark:bg-background-dark dark:text-foreground-dark gbk-sticky gbk-left-0 gbk-top-0 gbk-z-50 gbk-grid gbk-w-full gbk-grid-cols-3 gbk-items-center gbk-justify-between gbk-gap-4 gbk-border-b gbk-p-4">
             <Link
                 href={`/?${searchParams}`}
-                className="gbk-flex gbk-items-center gbk-gap-2"
+                className="gbk-flex gbk-w-fit gbk-items-center gbk-gap-2"
             >
                 <figure>
                     <Image

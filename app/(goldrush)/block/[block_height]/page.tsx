@@ -1,6 +1,6 @@
 "use client";
 
-import { MissingChain } from "@/components/shared";
+import { ChainsLoading } from "@/components/shared";
 import { type BlockPageProps } from "@/utils/types/pages.types";
 import { BlockDetails, BlockTransactions } from "@covalenthq/goldrush-kit";
 
@@ -9,7 +9,7 @@ const BlockPage: React.FC<BlockPageProps> = ({
     searchParams: { chain_name },
 }) => {
     if (!chain_name) {
-        return <MissingChain />;
+        return <ChainsLoading />;
     }
 
     return (

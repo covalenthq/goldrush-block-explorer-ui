@@ -1,5 +1,6 @@
 "use client";
 
+import { ChainsLoading } from "@/components/shared";
 import { type TransactionPageProps } from "@/utils/types/pages.types";
 import {
     TransactionDetails,
@@ -10,6 +11,10 @@ const TransactionPage: React.FC<TransactionPageProps> = ({
     params: { tx_hash },
     searchParams: { chain_name },
 }) => {
+    if (!chain_name) {
+        return <ChainsLoading />;
+    }
+
     return (
         <main className="gbk-mx-auto gbk-flex gbk-w-11/12 gbk-flex-col gbk-gap-4 gbk-p-10">
             <TransactionDetails chain_name={chain_name} tx_hash={tx_hash} />
