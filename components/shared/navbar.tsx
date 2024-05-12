@@ -79,7 +79,7 @@ export const Navbar: React.FC = () => {
                 break;
             }
             default: {
-                push(`/404?${searchParams}`);
+                push(`/not-found?${searchParams}`);
                 return;
             }
         }
