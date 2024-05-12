@@ -1,3 +1,5 @@
+"use client";
+
 import { ClientGoldRushProvider } from "@/utils/store";
 import { Footer, Navbar } from "@/components/shared";
 

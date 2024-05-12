@@ -1,11 +1,5 @@
 import { type Chain } from "@covalenthq/client-sdk";
 
-export interface HomePageProps {
-    searchParams: {
-        chain_name: Chain;
-    };
-}
-
 export interface AddressPageProps {
     params: {
         address: string;

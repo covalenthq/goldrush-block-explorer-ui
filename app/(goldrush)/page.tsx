@@ -1,13 +1,12 @@
 "use client";
 
 import { ChainsLoading } from "@/components/shared";
-import { type HomePageProps } from "@/utils/types/pages.types";
 import type { Chain } from "@covalenthq/client-sdk";
 import { GasCard, LatestBlocks } from "@covalenthq/goldrush-kit";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const Home: React.FC<HomePageProps> = () => {
+const Home: React.FC = () => {
     const searchParams = useSearchParams();
     const [chain_name, setChainName] = useState<Chain | null>(null);
 
@@ -15,9 +14,11 @@ const Home: React.FC<HomePageProps> = () => {
         setChainName(searchParams.get("chain_name") as Chain);
     }, [searchParams]);
 
-    return !chain_name ? (
-        <ChainsLoading />
-    ) : (
+    if (!chain_name) {
+        return <ChainsLoading />;
+    }
+
+    return (
         <main className="gbk-flex gbk-flex-col gbk-gap-4">
             <div className="gbk-flex gbk-gap-4">
                 <div className="gbk-w-full">
