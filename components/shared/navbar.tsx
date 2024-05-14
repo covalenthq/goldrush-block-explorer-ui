@@ -1,14 +1,23 @@
 "use client";
 
 import { ChainSelector, useGoldRush } from "@covalenthq/goldrush-kit";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Chains, type ChainItem } from "@covalenthq/client-sdk";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { CHAIN_NAME_SEARCH_PARAM } from "@/utils/constants/shared.constants";
+import Image from "next/image";
+import { useDebounce } from "@/utils/hooks";
+import kit from "@/goldrush.config";
+import Link from "next/link";
 
 export const Navbar: React.FC = () => {
-    const { chains, selectedChain, setSelectedChain, searchHandler } =
-        useGoldRush();
+    const {
+        chains,
+        selectedChain,
+        setSelectedChain,
+        searchHandler,
+        updateThemeHandler,
+        theme,
+    } = useGoldRush();
 
     const { push } = useRouter();
     const pathname = usePathname();
@@ -16,16 +25,31 @@ export const Navbar: React.FC = () => {
 
     const [searchInput, setSearchInput] = useState<string>("");
 
+    const CHAIN_NAME_SEARCH_PARAM: string = useMemo(() => "chain_name", []);
+
     useEffect(() => {
         const chainName =
-            searchParams.get(CHAIN_NAME_SEARCH_PARAM) ?? Chains.ETH_MAINNET;
-        if (chainName !== selectedChain?.name) {
-            const chain = chains?.find((o) => o.name === chainName);
-            if (chain) {
-                selectChainHandler(chain);
-            }
+            searchParams.get(CHAIN_NAME_SEARCH_PARAM) ||
+            kit.chains.includes(Chains.ETH_MAINNET)
+                ? Chains.ETH_MAINNET
+                : kit.chains[0];
+
+        const chain = chains?.find((o) => o.name === chainName) || null;
+        if (chain) {
+            selectChainHandler(chain);
         }
-    }, [searchParams, chains]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [chains]);
+
+    useDebounce(
+        () => {
+            if (searchInput && selectedChain) {
+                searchResultsHandler();
+            }
+        },
+        500,
+        [searchInput, selectedChain, searchParams]
+    );
 
     const selectChainHandler = useCallback(
         (chain: ChainItem) => {
@@ -34,6 +58,7 @@ export const Navbar: React.FC = () => {
             updatedParams.set(CHAIN_NAME_SEARCH_PARAM, chain.name);
             push(`${pathname}?${updatedParams}`);
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [searchParams, pathname]
     );
 
@@ -43,41 +68,75 @@ export const Navbar: React.FC = () => {
         switch (searchType) {
             case "address": {
                 page = "address";
+                break;
             }
             case "tx": {
-                return push(`/tx/${searchInput}?${searchParams}`);
+                page = "tx";
+                break;
             }
             case "block": {
-                return push(`/block/${searchInput}?${searchParams}`);
+                page = "block";
+                break;
             }
             default: {
-                return push("/404");
+                push(`/not-found?${searchParams}`);
+                return;
             }
         }
         push(`/${page}/${searchInput}?${searchParams}`);
-    }, [searchInput, selectedChain, searchParams]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchInput, searchParams]);
 
     return (
-        <nav className="flex gap-4">
-            <input
-                type="text"
-                name="search"
-                value={searchInput}
-                placeholder="Search by any Address / Txn Hash / Block / Domain Name"
-                onChange={({ target: { value } }) => setSearchInput(value)}
-                className="!border-accent-foreground"
-            />
-
-            <ChainSelector
-                onChangeChain={(chain: ChainItem) => selectChainHandler(chain)}
-            />
-
-            <button
-                disabled={!searchInput || !selectedChain}
-                onClick={searchResultsHandler}
+        <nav className="bg-background-light text-foreground-light dark:bg-background-dark dark:text-foreground-dark gbk-sticky gbk-left-0 gbk-top-0 gbk-z-50 gbk-grid gbk-w-full gbk-grid-cols-3 gbk-items-center gbk-justify-between gbk-gap-4 gbk-border-b gbk-p-4">
+            <Link
+                href={`/?${searchParams}`}
+                className="gbk-flex gbk-w-fit gbk-items-center gbk-gap-2"
             >
-                Search
-            </button>
+                <figure>
+                    <Image
+                        src={selectedChain?.logo_url || ""}
+                        alt={`GoldRush Block Explorer - ${selectedChain?.label}`}
+                        width={40}
+                        height={40}
+                    />
+                </figure>
+                <h1 className="gbk-text-lg gbk-font-medium gbk-leading-none">
+                    {kit.brand.title}
+                    <br />
+                    {kit.brand.subtitle}
+                </h1>
+            </Link>
+
+            <div className="gbk-mx-auto gbk-flex gbk-items-center gbk-gap-2">
+                <input
+                    type="text"
+                    name="search"
+                    value={searchInput}
+                    placeholder="Address / Txn Hash / Block / Domain Name"
+                    onChange={({ target: { value } }) => setSearchInput(value)}
+                    className="bg-background-light dark:bg-background-dark text-foreground-light dark:text-foreground-dark placeholder:text-secondary-light dark:placeholder:text-secondary-dark rounded border border-secondary-light dark:border-secondary-dark gbk-px-3 gbk-py-1"
+                />
+
+                <ChainSelector
+                    onChangeChain={(chain: ChainItem) =>
+                        selectChainHandler(chain)
+                    }
+                    chain_options={kit.chains}
+                />
+            </div>
+
+            <input
+                id="toggle"
+                className="toggle dark:text-background-light text-background-dark gbk-ml-auto"
+                type="checkbox"
+                defaultChecked={theme.mode === "light"}
+                onClick={() =>
+                    updateThemeHandler({
+                        mode: theme.mode === "light" ? "dark" : "light",
+                    })
+                }
+            />
         </nav>
     );
 };
