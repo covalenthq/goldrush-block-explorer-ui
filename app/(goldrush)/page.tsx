@@ -2,7 +2,11 @@
 
 import { ChainsLoading } from "@/components/shared";
 import type { Chain } from "@covalenthq/client-sdk";
-import { GasCard, LatestBlocks } from "@covalenthq/goldrush-kit";
+import {
+    GasCard,
+    LatestBlocks,
+    LatestTransactions,
+} from "@covalenthq/goldrush-kit";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -39,6 +43,13 @@ const Home: React.FC = () => {
                 <h2>Latest Blocks</h2>
                 <div className="gbk-flex gbk-justify-between gbk-gap-x-4">
                     <LatestBlocks chain_name={chain_name} />
+                </div>
+            </div>
+
+            <div>
+                <h2>Latest Transactions</h2>
+                <div className="gbk-flex gbk-justify-between gbk-gap-x-4">
+                    <LatestTransactions chain_name={chain_name} />
                 </div>
             </div>
         </main>
