@@ -1,6 +1,6 @@
-import { type GRKKitType } from "./utils/types/shared.types";
+import { type GoldRushConfig } from "./utils/types/shared.types";
 
-export const GRKKit: GRKKitType = {
+export const goldrushConfig: GoldRushConfig = {
     brand: {
         title: "GoldRush",
         subtitle: "Block Explorer",
@@ -24,7 +24,8 @@ export const GRKKit: GRKKitType = {
         },
         mode: "dark",
     },
-    chains: ["eth-mainnet", "matic-mainnet"],
+    // chains: [],
+    chains: ["matic-mainnet", 1],
 };
 
-export default GRKKit;
+export default goldrushConfig;

@@ -1,12 +1,12 @@
 "use client";
 
 import { ChainSelector, useGoldRush } from "@covalenthq/goldrush-kit";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { Chains, type ChainItem } from "@covalenthq/client-sdk";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
+import { type ChainItem } from "@covalenthq/client-sdk";
+import { notFound, useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useDebounce } from "@/utils/hooks";
-import kit from "@/goldrush.config";
+import { goldrushConfig } from "@/goldrush.config";
 import Link from "next/link";
 
 export const Navbar: React.FC = () => {
@@ -20,77 +20,93 @@ export const Navbar: React.FC = () => {
     } = useGoldRush();
 
     const { push } = useRouter();
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
+    const { chain_id } = useParams<{ chain_id: string }>();
 
     const [searchInput, setSearchInput] = useState<string>("");
 
-    const CHAIN_NAME_SEARCH_PARAM: string = useMemo(() => "chain_name", []);
-
     useEffect(() => {
-        const chainName =
-            searchParams.get(CHAIN_NAME_SEARCH_PARAM) ||
-            kit.chains.includes(Chains.ETH_MAINNET)
-                ? Chains.ETH_MAINNET
-                : kit.chains[0];
+        if (!chains) return;
 
-        const chain = chains?.find((o) => o.name === chainName) || null;
-        if (chain) {
-            selectChainHandler(chain);
+        const _chains: ChainItem[] = goldrushConfig.chains.length
+            ? goldrushConfig.chains.reduce((acc: ChainItem[], nameOrId) => {
+                  const foundChain: ChainItem | null =
+                      chains.find(
+                          ({ name, chain_id }) =>
+                              name === nameOrId ||
+                              chain_id.toString() === nameOrId.toString()
+                      ) ?? null;
+                  if (foundChain) {
+                      acc.push(foundChain);
+                  }
+                  return acc;
+              }, [])
+            : chains;
+
+        if (!chain_id) {
+            changeSelectedChainHandler(_chains[0]);
+        } else {
+            const chain: ChainItem | null =
+                _chains.find(
+                    (chain) => chain.chain_id.toString() === chain_id
+                ) ?? null;
+            if (chain) {
+                changeSelectedChainHandler(chain);
+            } else {
+                notFound();
+            }
         }
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [chains]);
+
+    const changeSelectedChainHandler = useCallback((chain: ChainItem) => {
+        setSelectedChain(chain);
+        push(`${chain.chain_id}`);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useDebounce(
         () => {
             if (searchInput && selectedChain) {
-                searchResultsHandler();
+                searchResultsHandler(searchInput, selectedChain);
             }
         },
         500,
-        [searchInput, selectedChain, searchParams]
+        [searchInput, selectedChain]
     );
 
-    const selectChainHandler = useCallback(
-        (chain: ChainItem) => {
-            setSelectedChain(chain);
-            const updatedParams = new URLSearchParams(searchParams);
-            updatedParams.set(CHAIN_NAME_SEARCH_PARAM, chain.name);
-            push(`${pathname}?${updatedParams}`);
+    const searchResultsHandler = useCallback(
+        (input: string, chain: ChainItem) => {
+            const searchType = searchHandler(input);
+            let page: string | null = null;
+            switch (searchType) {
+                case "address": {
+                    page = "address";
+                    break;
+                }
+                case "tx": {
+                    page = "tx";
+                    break;
+                }
+                case "block": {
+                    page = "block";
+                    break;
+                }
+                default: {
+                    push(`/not-found`);
+                    return;
+                }
+            }
+            push(`/${chain.chain_id}/${page}/${input}`);
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [searchParams, pathname]
+        []
     );
-
-    const searchResultsHandler = useCallback(() => {
-        const searchType = searchHandler(searchInput);
-        let page: string | null = null;
-        switch (searchType) {
-            case "address": {
-                page = "address";
-                break;
-            }
-            case "tx": {
-                page = "tx";
-                break;
-            }
-            case "block": {
-                page = "block";
-                break;
-            }
-            default: {
-                push(`/not-found?${searchParams}`);
-                return;
-            }
-        }
-        push(`/${page}/${searchInput}?${searchParams}`);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [searchInput, searchParams]);
 
     return (
         <nav className="bg-background-light text-foreground-light dark:bg-background-dark dark:text-foreground-dark gbk-sticky gbk-left-0 gbk-top-0 gbk-z-50 gbk-grid gbk-w-full gbk-grid-cols-3 gbk-items-center gbk-justify-between gbk-gap-4 gbk-border-b gbk-p-4">
             <Link
-                href={`/?${searchParams}`}
+                href={`/${selectedChain?.chain_id}`}
                 className="gbk-flex gbk-w-fit gbk-items-center gbk-gap-2"
             >
                 <figure>
@@ -102,9 +118,9 @@ export const Navbar: React.FC = () => {
                     />
                 </figure>
                 <h1 className="gbk-text-lg gbk-font-medium gbk-leading-none">
-                    {kit.brand.title}
+                    {goldrushConfig.brand.title}
                     <br />
-                    {kit.brand.subtitle}
+                    {goldrushConfig.brand.subtitle}
                 </h1>
             </Link>
 
@@ -119,10 +135,10 @@ export const Navbar: React.FC = () => {
                 />
 
                 <ChainSelector
-                    onChangeChain={(chain: ChainItem) =>
-                        selectChainHandler(chain)
-                    }
-                    chain_options={kit.chains}
+                    onChangeChain={changeSelectedChainHandler}
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    chain_options={goldrushConfig.chains}
                 />
             </div>
 

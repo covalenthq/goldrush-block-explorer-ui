@@ -1,24 +1,18 @@
 "use client";
 
-import { ChainsLoading } from "@/components/shared";
 import { type TransactionPageProps } from "@/utils/types/pages.types";
 import {
     TransactionDetails,
-    TransactionReceiptView,
+    TransactionReceipt,
 } from "@covalenthq/goldrush-kit";
 
 const TransactionPage: React.FC<TransactionPageProps> = ({
-    params: { tx_hash },
-    searchParams: { chain_name },
+    params: { tx_hash, chain_id },
 }) => {
-    if (!chain_name) {
-        return <ChainsLoading />;
-    }
-
     return (
         <main className="gbk-mx-auto gbk-flex gbk-w-11/12 gbk-flex-col gbk-gap-4 gbk-p-10">
-            <TransactionDetails chain_name={chain_name} tx_hash={tx_hash} />
-            <TransactionReceiptView chain_name={chain_name} tx_hash={tx_hash} />
+            <TransactionDetails chain_name={chain_id} tx_hash={tx_hash} />
+            <TransactionReceipt chain_name={chain_id} tx_hash={tx_hash} />
         </main>
     );
 };
