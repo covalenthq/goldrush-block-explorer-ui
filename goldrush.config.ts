@@ -25,7 +25,7 @@ export const goldrushConfig: GoldRushConfig = {
         mode: "dark",
     },
     // chains: [],
-    chains: ["matic-mainnet", 1],
+    chains: [1, "matic-mainnet"],
 };
 
 export default goldrushConfig;

@@ -20,7 +20,20 @@ export interface BlockPageProps {
     };
 }
 
+export interface BlocksPageProps {
+    params: {
+        chain_id: Chain;
+    };
+}
+
 export interface TransactionPageProps {
+    params: {
+        tx_hash: string;
+        chain_id: Chain;
+    };
+}
+
+export interface TransactionsPageProps {
     params: {
         tx_hash: string;
         chain_id: Chain;

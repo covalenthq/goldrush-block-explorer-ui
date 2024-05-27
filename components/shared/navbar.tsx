@@ -3,7 +3,7 @@
 import { ChainSelector, useGoldRush } from "@covalenthq/goldrush-kit";
 import { useCallback, useEffect, useState } from "react";
 import { type ChainItem } from "@covalenthq/client-sdk";
-import { notFound, useParams, useRouter } from "next/navigation";
+import { notFound, useParams, usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useDebounce } from "@/utils/hooks";
 import { goldrushConfig } from "@/goldrush.config";
@@ -20,6 +20,7 @@ export const Navbar: React.FC = () => {
     } = useGoldRush();
 
     const { push } = useRouter();
+    const path = usePathname();
     const { chain_id } = useParams<{ chain_id: string }>();
 
     const [searchInput, setSearchInput] = useState<string>("");
@@ -59,11 +60,17 @@ export const Navbar: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [chains]);
 
-    const changeSelectedChainHandler = useCallback((chain: ChainItem) => {
-        setSelectedChain(chain);
-        push(`${chain.chain_id}`);
+    const changeSelectedChainHandler = useCallback(
+        (chain: ChainItem) => {
+            const paths = path.split("/");
+            paths.shift();
+            paths[0] = chain.chain_id;
+            setSelectedChain(chain);
+            push(`/${paths.join("/")}`);
+        },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        [path]
+    );
 
     useDebounce(
         () => {
@@ -77,6 +84,10 @@ export const Navbar: React.FC = () => {
 
     const searchResultsHandler = useCallback(
         (input: string, chain: ChainItem) => {
+            if (!searchInput) {
+                return;
+            }
+
             const searchType = searchHandler(input);
             let page: string | null = null;
             switch (searchType) {
@@ -85,7 +96,7 @@ export const Navbar: React.FC = () => {
                     break;
                 }
                 case "tx": {
-                    page = "tx";
+                    page = "transaction";
                     break;
                 }
                 case "block": {
