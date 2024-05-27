@@ -1,11 +1,11 @@
-import { type Chain } from "@covalenthq/client-sdk";
+import { type Chain, type ChainID } from "@covalenthq/client-sdk";
 
-export interface GRKKitType {
+export interface GoldRushConfig {
     theme: unknown;
     brand: {
         title: string;
         subtitle: string;
         logo_url: string;
     };
-    chains: Chain[];
+    chains: (Chain | ChainID)[];
 }

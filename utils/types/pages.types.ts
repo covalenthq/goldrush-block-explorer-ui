@@ -1,28 +1,41 @@
 import { type Chain } from "@covalenthq/client-sdk";
 
+export interface HomePageProps {
+    params: {
+        chain_id: Chain;
+    };
+}
+
 export interface AddressPageProps {
     params: {
         address: string;
-    };
-    searchParams: {
-        chain_name: Chain;
+        chain_id: Chain;
     };
 }
 
 export interface BlockPageProps {
     params: {
         block_height: string;
+        chain_id: Chain;
     };
-    searchParams: {
-        chain_name: Chain;
+}
+
+export interface BlocksPageProps {
+    params: {
+        chain_id: Chain;
     };
 }
 
 export interface TransactionPageProps {
     params: {
         tx_hash: string;
+        chain_id: Chain;
     };
-    searchParams: {
-        chain_name: Chain;
+}
+
+export interface TransactionsPageProps {
+    params: {
+        tx_hash: string;
+        chain_id: Chain;
     };
 }
