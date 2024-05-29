@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 .toggle {
-    --size: 2rem;
-    @apply gbk-appearance-none gbk-outline-none gbk-cursor-pointer gbk-rounded-full gbk-transition-all;
+    --size: 1rem;
+    @apply gbk-cursor-pointer gbk-appearance-none gbk-rounded-full gbk-outline-none gbk-transition-all;
     width: var(--size);
     height: var(--size);
     box-shadow: inset calc(var(--size) * 0.33) calc(var(--size) * -0.25) 0;

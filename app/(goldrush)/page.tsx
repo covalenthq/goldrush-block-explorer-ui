@@ -1,7 +1,7 @@
 "use client";
 
 const Home: React.FC = () => {
-    return <div>REDIRECT TO FIRST CHAIN</div>;
+    return <p>REDIRECTING TO FIRST CHAIN...</p>;
 };
 
 export default Home;

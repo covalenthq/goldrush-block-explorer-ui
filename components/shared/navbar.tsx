@@ -84,7 +84,7 @@ export const Navbar: React.FC = () => {
 
     const searchResultsHandler = useCallback(
         (input: string, chain: ChainItem) => {
-            if (!searchInput) {
+            if (!input) {
                 return;
             }
 
