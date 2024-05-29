@@ -10,7 +10,7 @@ export const goldrushConfig: GoldRushConfig = {
         borderRadius: 8,
         colors: {
             dark: {
-                primary: "#F7CD60",
+                primary: "#EA46CB",
                 background: "#0F172A",
                 foreground: "#FFFFFF",
                 secondary: "#B3B3B3",
@@ -19,12 +19,11 @@ export const goldrushConfig: GoldRushConfig = {
                 primary: "#EA46CB",
                 background: "#F8F8F8",
                 foreground: "#090909",
-                secondary: "#94A3B8",
+                secondary: "#A4A3B8",
             },
         },
         mode: "dark",
     },
-    // chains: [],
     chains: [1, "matic-mainnet"],
 };
 

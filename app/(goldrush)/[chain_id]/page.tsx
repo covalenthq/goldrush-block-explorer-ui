@@ -12,15 +12,7 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
     return (
         <main className="gbk-flex gbk-flex-col gbk-gap-4">
             <div className="gbk-grid gbk-grid-cols-2 gbk-gap-8">
-                <div className="gbk-w-full">
-                    <h2>ERC 20</h2>
-                    <GasCard chain_name={chain_id} event_type="erc20" />
-                </div>
-
-                <div className="gbk-w-full">
-                    <h2>Native Tokens</h2>
-                    <GasCard chain_name={chain_id} event_type="nativetokens" />
-                </div>
+                <GasCard chain_name={chain_id} />
             </div>
 
             <div className="gbk-grid gbk-grid-cols-2 gbk-gap-8">
@@ -31,10 +23,10 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                             chain_name={chain_id}
                             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                             // @ts-expect-error
-                            actionable_block={({ height }) => ({
+                            actionable_block={(block) => ({
                                 parent: Link,
                                 parentProps: {
-                                    href: `/${chain_id}/block/${height}`,
+                                    href: `/${chain_id}/block/${block}`,
                                     className: "hover:underline",
                                 },
                             })}

@@ -1,1 +1,0 @@
-export { ClientGoldRushProvider } from "./goldrush";
