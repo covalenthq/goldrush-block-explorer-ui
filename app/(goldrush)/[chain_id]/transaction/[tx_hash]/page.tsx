@@ -11,9 +11,9 @@ const TransactionPage: React.FC<TransactionPageProps> = ({
     params: { tx_hash, chain_id },
 }) => {
     return (
-        <main className="gbk-mx-auto gbk-flex gbk-w-11/12 gbk-flex-col gbk-gap-4 gbk-p-10">
+        <main className="gbk-flex gbk-flex-col gbk-gap-4">
             <TransactionDetails
-                chain_name={"eth-mainnet"}
+                chain_name={chain_id}
                 tx_hash={tx_hash}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error

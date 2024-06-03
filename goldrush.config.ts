@@ -4,22 +4,22 @@ export const goldrushConfig: GoldRushConfig = {
     brand: {
         title: "GoldRush",
         subtitle: "Block Explorer",
-        logo_url: "",
+        logo_url: "/goldrush-logo.png",
     },
     theme: {
         borderRadius: 8,
         colors: {
             dark: {
-                primary: "#EA46CB",
-                background: "#0F172A",
+                primary: "#FF4C8B",
+                background: "#000426",
                 foreground: "#FFFFFF",
-                secondary: "#B3B3B3",
+                secondary: "#868E96",
             },
             light: {
-                primary: "#EA46CB",
-                background: "#F8F8F8",
-                foreground: "#090909",
-                secondary: "#A4A3B8",
+                primary: "#00D8D5",
+                background: "#FFFFFF",
+                foreground: "#1C2024",
+                secondary: "#868E96",
             },
         },
         mode: "dark",

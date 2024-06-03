@@ -2,29 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
-.toggle {
-    --size: 1rem;
-    @apply gbk-cursor-pointer gbk-appearance-none gbk-rounded-full gbk-outline-none gbk-transition-all;
-    width: var(--size);
-    height: var(--size);
-    box-shadow: inset calc(var(--size) * 0.33) calc(var(--size) * -0.25) 0;
-}
-.toggle:checked {
-    --ray-size: calc(var(--size) * -0.4);
-    --offset-orthogonal: calc(var(--size) * 0.65);
-    --offset-diagonal: calc(var(--size) * 0.45);
-    transform: scale(0.75);
-    box-shadow:
-        inset 0 0 0 var(--size),
-        calc(var(--offset-orthogonal) * -1) 0 0 var(--ray-size),
-        var(--offset-orthogonal) 0 0 var(--ray-size),
-        0 calc(var(--offset-orthogonal) * -1) 0 var(--ray-size),
-        0 var(--offset-orthogonal) 0 var(--ray-size),
-        calc(var(--offset-diagonal) * -1) calc(var(--offset-diagonal) * -1) 0
-            var(--ray-size),
-        var(--offset-diagonal) var(--offset-diagonal) 0 var(--ray-size),
-        calc(var(--offset-diagonal) * -1) var(--offset-diagonal) 0
-            var(--ray-size),
-        var(--offset-diagonal) calc(var(--offset-diagonal) * -1) 0
-            var(--ray-size);
+@layer base {
+    #theme-toggle {
+        --toggle-size: 1rem;
+        @apply gbk-cursor-pointer gbk-appearance-none gbk-rounded-full gbk-outline-none gbk-transition-all;
+        width: var(--toggle-size);
+        height: var(--toggle-size);
+        box-shadow: inset calc(var(--toggle-size) * 0.33)
+            calc(var(--toggle-size) * -0.25) 0;
+    }
+    #theme-toggle:checked {
+        --ray-size: calc(var(--toggle-size) * -0.4);
+        --offset-orthogonal: calc(var(--toggle-size) * 0.65);
+        --offset-diagonal: calc(var(--toggle-size) * 0.45);
+        transform: scale(0.75);
+        box-shadow:
+            inset 0 0 0 var(--toggle-size),
+            calc(var(--offset-orthogonal) * -1) 0 0 var(--ray-size),
+            var(--offset-orthogonal) 0 0 var(--ray-size),
+            0 calc(var(--offset-orthogonal) * -1) 0 var(--ray-size),
+            0 var(--offset-orthogonal) 0 var(--ray-size),
+            calc(var(--offset-diagonal) * -1) calc(var(--offset-diagonal) * -1)
+                0 var(--ray-size),
+            var(--offset-diagonal) var(--offset-diagonal) 0 var(--ray-size),
+            calc(var(--offset-diagonal) * -1) var(--offset-diagonal) 0
+                var(--ray-size),
+            var(--offset-diagonal) calc(var(--offset-diagonal) * -1) 0
+                var(--ray-size);
+    }
+
+    #menu {
+        --menu-size: 20px;
+        --menu-color: #868e96;
+
+        height: var(--menu-size);
+        aspect-ratio: 1;
+        border: none;
+        padding: 0;
+        border-inline: calc(var(--menu-size) / 2) solid #0000;
+        box-sizing: content-box;
+        --_g1: linear-gradient(
+                var(--menu-color) 20%,
+                #0000 0 80%,
+                var(--menu-color) 0
+            )
+            no-repeat content-box border-box;
+        --_g2: radial-gradient(
+                circle closest-side at 50% 12.5%,
+                var(--menu-color) 95%,
+                #0000
+            )
+            repeat-y content-box border-box;
+        background:
+            var(--_g2) left var(--_p, 0px) top,
+            var(--_g1) left calc(var(--menu-size) / 10 + var(--_p, 0px)) top,
+            var(--_g2) right var(--_p, 0px) top,
+            var(--_g1) right calc(var(--menu-size) / 10 + var(--_p, 0px)) top;
+        background-size:
+            20% 80%,
+            40% 100%;
+        position: relative;
+        clip-path: inset(0 25%);
+        -webkit-mask: linear-gradient(90deg, #0000, #000 25% 75%, #0000);
+        cursor: pointer;
+        transition:
+            background-position 0.3s var(--_s, 0.3s),
+            clip-path 0s var(--_s, 0.6s);
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+    #menu:before,
+    #menu:after {
+        content: "";
+        position: absolute;
+        border-radius: var(--menu-size);
+        inset: 40% 0;
+        background: var(--menu-color);
+        transition: transform 0.3s calc(0.3s - var(--_s, 0.3s));
+    }
+
+    #menu:checked {
+        clip-path: inset(0);
+        --_p: calc(-1 * var(--menu-size));
+        --_s: 0s;
+    }
+    #menu:checked:before {
+        transform: rotate(45deg);
+    }
+    #menu:checked:after {
+        transform: rotate(-45deg);
+    }
+    #menu:focus-visible {
+        clip-path: none;
+        -webkit-mask: none;
+        border: none;
+        outline: 2px solid var(--menu-color);
+        outline-offset: 5px;
+    }
 }
