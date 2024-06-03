@@ -12,7 +12,7 @@ const AddressPage: React.FC<AddressPageProps> = ({
     params: { address, chain_id },
 }) => {
     return (
-        <main className="gbk-mx-auto gbk-flex gbk-w-11/12 gbk-flex-col gbk-gap-4 gbk-p-10">
+        <main className="gbk-flex gbk-flex-col gbk-gap-4">
             <AddressCard address={address} />
 
             <AddressDetails address={address} chain_name={chain_id} />

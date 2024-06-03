@@ -8,7 +8,7 @@ const TransactionsPage: React.FC<TransactionsPageProps> = ({
     params: { chain_id },
 }) => {
     return (
-        <main className="gbk-mx-auto gbk-flex gbk-w-11/12 gbk-flex-col gbk-gap-4 gbk-p-10">
+        <main>
             <TransactionsList
                 chain_name={chain_id}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

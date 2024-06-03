@@ -24,6 +24,7 @@ export const Navbar: React.FC = () => {
     const { chain_id } = useParams<{ chain_id: string }>();
 
     const [searchInput, setSearchInput] = useState<string>("");
+    const [open, setOpen] = useState<boolean>(false);
 
     useEffect(() => {
         if (!chains) return;
@@ -115,55 +116,75 @@ export const Navbar: React.FC = () => {
     );
 
     return (
-        <nav className="bg-background-light text-foreground-light dark:bg-background-dark dark:text-foreground-dark gbk-sticky gbk-left-0 gbk-top-0 gbk-z-50 gbk-grid gbk-w-full gbk-grid-cols-3 gbk-items-center gbk-justify-between gbk-gap-4 gbk-border-b gbk-p-4">
+        <nav className="bg-background-light text-foreground-light dark:bg-background-dark dark:text-foreground-dark border-secondary-light dark:border-secondary-dark gbk-sticky gbk-left-0 gbk-top-0 gbk-z-50 gbk-flex gbk-w-full gbk-flex-wrap gbk-items-center gbk-justify-between gbk-gap-x-4 gbk-border-b gbk-px-8 gbk-py-4 md:gbk-flex-nowrap">
             <Link
                 href={`/${selectedChain?.chain_id}`}
-                className="gbk-flex gbk-w-fit gbk-items-center gbk-gap-2"
+                className="gbk-mr-auto gbk-flex gbk-w-fit gbk-items-center gbk-gap-2"
             >
-                <figure>
+                <figure className="gbk-relative gbk-h-10 gbk-w-10">
                     <Image
-                        src={selectedChain?.logo_url || ""}
+                        src={goldrushConfig.brand.logo_url}
                         alt={`GoldRush Block Explorer - ${selectedChain?.label}`}
-                        width={40}
-                        height={40}
+                        fill
+                        className="gbk-object-cover"
                     />
                 </figure>
-                <h1 className="gbk-text-lg gbk-font-medium gbk-leading-none">
+
+                <h1 className="gbk-whitespace-nowrap gbk-text-lg gbk-font-medium gbk-leading-none">
                     {goldrushConfig.brand.title}
                     <br />
                     {goldrushConfig.brand.subtitle}
                 </h1>
             </Link>
 
-            <div className="gbk-mx-auto gbk-flex gbk-items-center gbk-gap-2">
-                <input
-                    type="text"
-                    name="search"
-                    value={searchInput}
-                    placeholder="Address / Txn Hash / Block / Domain Name"
-                    onChange={({ target: { value } }) => setSearchInput(value)}
-                    className="bg-background-light dark:bg-background-dark text-foreground-light dark:text-foreground-dark placeholder:text-secondary-light dark:placeholder:text-secondary-dark rounded border border-secondary-light dark:border-secondary-dark gbk-px-3 gbk-py-1"
-                />
-
-                <ChainSelector
-                    onChangeChain={changeSelectedChainHandler}
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore
-                    chain_options={goldrushConfig.chains}
-                />
-            </div>
-
             <input
-                id="toggle"
-                className="toggle dark:text-background-light text-background-dark gbk-ml-auto"
+                id="menu"
                 type="checkbox"
-                defaultChecked={theme.mode === "light"}
-                onClick={() =>
-                    updateThemeHandler({
-                        mode: theme.mode === "light" ? "dark" : "light",
-                    })
-                }
+                role="button"
+                onClick={() => setOpen(!open)}
+                className="gbk-ml-auto md:gbk-hidden"
+                defaultChecked={open}
             />
+
+            <div
+                className={`${
+                    open ? "gbk-max-h-40" : "gbk-max-h-0 gbk-overflow-hidden"
+                } gbk-flex gbk-w-full gbk-items-center gbk-justify-between gbk-transition-all gbk-duration-500 gbk-ease-in-out md:gbk-max-h-fit md:gbk-flex-row`}
+            >
+                <div className="gbk-mt-4 gbk-flex gbk-flex-col gbk-items-center gbk-gap-2 md:gbk-mx-auto md:gbk-mt-0 md:gbk-flex-row">
+                    <input
+                        type="text"
+                        name="search"
+                        value={searchInput}
+                        placeholder="Address / Hash / Block / Domain Name"
+                        onChange={({ target: { value } }) =>
+                            setSearchInput(value)
+                        }
+                        className="bg-background-light dark:bg-background-dark text-foreground-light dark:text-foreground-dark placeholder:text-secondary-light dark:placeholder:text-secondary-dark rounded border border-secondary-light dark:border-secondary-dark gbk-h-9 gbk-w-72 gbk-px-3"
+                    />
+
+                    <ChainSelector
+                        onChangeChain={changeSelectedChainHandler}
+                        chain_options={goldrushConfig.chains}
+                    />
+                </div>
+
+                <button
+                    className="hover:bg-secondary-light rounded border border-secondary-light dark:border-secondary-dark gbk-ml-auto gbk-mt-4 gbk-flex gbk-h-10 gbk-w-10 gbk-items-center gbk-justify-center gbk-transition-all md:gbk-mt-0"
+                    onClick={() =>
+                        updateThemeHandler({
+                            mode: theme.mode === "light" ? "dark" : "light",
+                        })
+                    }
+                >
+                    <input
+                        id="theme-toggle"
+                        className="dark:text-background-light text-background-dark"
+                        type="checkbox"
+                        defaultChecked={theme.mode === "light"}
+                    />
+                </button>
+            </div>
         </nav>
     );
 };
