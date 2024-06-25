@@ -6,6 +6,14 @@ export interface HomePageProps {
     };
 }
 
+export interface AddressLayoutProps {
+    children: React.ReactNode;
+    params: {
+        address: string;
+        chain_id: Chain;
+    };
+}
+
 export interface AddressPageProps {
     params: {
         address: string;

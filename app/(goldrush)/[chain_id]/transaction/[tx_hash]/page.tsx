@@ -11,7 +11,7 @@ const TransactionPage: React.FC<TransactionPageProps> = ({
     params: { tx_hash, chain_id },
 }) => {
     return (
-        <main className="gbk-flex gbk-flex-col gbk-gap-4">
+        <main className="gbk-flex gbk-w-full gbk-flex-col gbk-gap-4">
             <TransactionDetails
                 chain_name={chain_id}
                 tx_hash={tx_hash}

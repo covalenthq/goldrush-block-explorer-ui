@@ -10,7 +10,7 @@ import Link from "next/link";
 
 const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
     return (
-        <main className="gbk-flex gbk-flex-col gbk-gap-4">
+        <main className="gbk-flex gbk-w-full gbk-flex-col gbk-gap-4">
             <GasCard chain_name={chain_id} />
 
             <div className="gbk-grid gbk-grid-cols-1 gbk-gap-8 xl:gbk-grid-cols-2">

@@ -1,7 +1,8 @@
 import { type Chain, type ChainID } from "@covalenthq/client-sdk";
+import { type GoldRushThemeType } from "@covalenthq/goldrush-kit";
 
 export interface GoldRushConfig {
-    theme: unknown;
+    theme: GoldRushThemeType;
     brand: {
         title: string;
         subtitle: string;
