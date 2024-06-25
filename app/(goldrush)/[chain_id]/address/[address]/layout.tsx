@@ -1,10 +1,10 @@
 "use client";
 
-import { AddressCard, AddressDetails } from "@covalenthq/goldrush-kit";
 import { type AddressLayoutProps } from "@/utils/types/pages.types";
+import { AddressCard, AddressDetails } from "@covalenthq/goldrush-kit";
 import Link from "next/link";
-import { useMemo } from "react";
 import { usePathname } from "next/navigation";
+import { useMemo } from "react";
 
 const AddressLayout: React.FC<AddressLayoutProps> = ({
     children,

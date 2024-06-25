@@ -1,7 +1,9 @@
+import "./globals.css";
+import { goldrushConfig } from "@/goldrush.config";
+import "@covalenthq/goldrush-kit/styles.css";
+import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import "@covalenthq/goldrush-kit/styles.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,14 +36,29 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <link
                 rel="mask-icon"
                 href="/site/safari-pinned-tab.svg"
-                color="#5bbad5"
+                color={goldrushConfig.theme.colors?.light?.primary || "#00D8D5"}
             />
-            <meta name="msapplication-TileColor" content="#FF4C8B" />
+            <meta
+                name="msapplication-TileColor"
+                content={
+                    goldrushConfig.theme.colors?.dark?.primary || "#FF4C8B"
+                }
+            />
             <meta
                 name="msapplication-config"
                 content="/site/browserconfig.xml"
             />
-            <meta name="theme-color" content="#FFFFFF" />
+            <meta
+                name="theme-color"
+                content={
+                    goldrushConfig.theme.colors?.light?.foreground || "#FFFFFF"
+                }
+            />
+
+            {goldrushConfig.gtag_id && (
+                <GoogleTagManager gtmId={goldrushConfig.gtag_id} />
+            )}
+
             <body
                 className={`${inter.className} gbk-relative gbk-flex gbk-min-h-screen gbk-w-full gbk-flex-col gbk-justify-between`}
             >

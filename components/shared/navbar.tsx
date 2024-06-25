@@ -1,13 +1,13 @@
 "use client";
 
-import { ChainSelector, useGoldRush } from "@covalenthq/goldrush-kit";
-import { useCallback, useEffect, useState } from "react";
-import { type ChainItem } from "@covalenthq/client-sdk";
-import { notFound, useParams, usePathname, useRouter } from "next/navigation";
-import Image from "next/image";
-import { useDebounce } from "@/utils/hooks";
 import { goldrushConfig } from "@/goldrush.config";
+import { useDebounce } from "@/utils/hooks";
+import { type ChainItem } from "@covalenthq/client-sdk";
+import { ChainSelector, useGoldRush } from "@covalenthq/goldrush-kit";
+import Image from "next/image";
 import Link from "next/link";
+import { notFound, useParams, usePathname, useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 
 export const Navbar: React.FC = () => {
     const {
