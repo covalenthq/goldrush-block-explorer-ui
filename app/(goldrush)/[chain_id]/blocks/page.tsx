@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const BlocksPage: React.FC<BlocksPageProps> = ({ params: { chain_id } }) => {
     return (
-        <main>
+        <main className="gbk-flex gbk-w-full gbk-flex-col gbk-gap-4">
             <BlocksList
                 chain_name={chain_id}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

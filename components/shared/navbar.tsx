@@ -1,13 +1,13 @@
 "use client";
 
-import { ChainSelector, useGoldRush } from "@covalenthq/goldrush-kit";
-import { useCallback, useEffect, useState } from "react";
-import { type ChainItem } from "@covalenthq/client-sdk";
-import { notFound, useParams, usePathname, useRouter } from "next/navigation";
-import Image from "next/image";
-import { useDebounce } from "@/utils/hooks";
 import { goldrushConfig } from "@/goldrush.config";
+import { useDebounce } from "@/utils/hooks";
+import { type ChainItem } from "@covalenthq/client-sdk";
+import { ChainSelector, useGoldRush } from "@covalenthq/goldrush-kit";
+import Image from "next/image";
 import Link from "next/link";
+import { notFound, useParams, usePathname, useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 
 export const Navbar: React.FC = () => {
     const {
@@ -160,7 +160,7 @@ export const Navbar: React.FC = () => {
                         onChange={({ target: { value } }) =>
                             setSearchInput(value)
                         }
-                        className="bg-background-light dark:bg-background-dark text-foreground-light dark:text-foreground-dark placeholder:text-secondary-light dark:placeholder:text-secondary-dark rounded border border-secondary-light dark:border-secondary-dark gbk-h-9 gbk-w-72 gbk-px-3"
+                        className="bg-background-light dark:bg-background-dark text-foreground-light dark:text-foreground-dark placeholder:text-secondary-light dark:placeholder:text-secondary-dark rounded border border-secondary-light dark:border-secondary-dark gbk-h-9 gbk-w-72 gbk-px-3 gbk-outline-none"
                     />
 
                     <ChainSelector
@@ -169,21 +169,17 @@ export const Navbar: React.FC = () => {
                     />
                 </div>
 
-                <button
-                    className="hover:bg-secondary-light rounded border border-secondary-light dark:border-secondary-dark gbk-ml-auto gbk-mt-4 gbk-flex gbk-h-10 gbk-w-10 gbk-items-center gbk-justify-center gbk-transition-all md:gbk-mt-0"
+                <input
+                    id="theme-toggle"
+                    className="dark:text-background-light text-background-dark"
+                    type="checkbox"
+                    defaultChecked={theme.mode === "light"}
                     onClick={() =>
                         updateThemeHandler({
                             mode: theme.mode === "light" ? "dark" : "light",
                         })
                     }
-                >
-                    <input
-                        id="theme-toggle"
-                        className="dark:text-background-light text-background-dark"
-                        type="checkbox"
-                        defaultChecked={theme.mode === "light"}
-                    />
-                </button>
+                />
             </div>
         </nav>
     );

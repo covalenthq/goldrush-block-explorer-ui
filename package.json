@@ -10,12 +10,14 @@
     },
     "dependencies": {
         "@covalenthq/client-sdk": "^1.0.2",
-        "@covalenthq/goldrush-kit": "^0.6.4",
+        "@covalenthq/goldrush-kit": "^0.6.5",
+        "@next/third-parties": "^14.2.4",
         "next": "14.1.3",
         "react": "^18",
         "react-dom": "^18"
     },
     "devDependencies": {
+        "@trivago/prettier-plugin-sort-imports": "^4.3.0",
         "@types/node": "^20",
         "@types/react": "^18",
         "@types/react-dom": "^18",
@@ -27,7 +29,7 @@
         "prettier": "^3.2.5",
         "prettier-plugin-tailwindcss": "^0.5.13",
         "tailwindcss": "^3.3.0",
-        "typescript": "^5.4.5",
+        "typescript": "^5",
         "typescript-eslint": "^7.6.0"
     }
 }
