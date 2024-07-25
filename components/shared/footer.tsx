@@ -18,6 +18,7 @@ export const Footer: React.FC = () => {
                 href="https://www.covalenthq.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="gbk-w-72 gbk-flex"
             >
                 <PoweredByCovalent />
             </a>

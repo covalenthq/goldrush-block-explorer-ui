@@ -1,16 +1,24 @@
 "use client";
 
-import Image from "next/image";
+import goldrushLoader from "../../public/goldrush-loader.json";
+import Lottie from "react-lottie";
 
 const Home: React.FC = () => {
     return (
-        <Image
-            src="/covalent-loader.gif"
-            alt="GoldRush Block Explorer"
-            height={200}
-            width={200}
-            className="gbk-m-auto"
-        />
+        <main className="gbk-m-auto">
+            <Lottie
+                options={{
+                    loop: true,
+                    autoplay: true,
+                    animationData: goldrushLoader,
+                    rendererSettings: {
+                        preserveAspectRatio: "xMidYMid slice",
+                    },
+                }}
+                height={200}
+                width={200}
+            />
+        </main>
     );
 };
 
