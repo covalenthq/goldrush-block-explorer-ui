@@ -3,16 +3,39 @@
 import { PoweredByCovalent } from ".";
 
 export const Footer: React.FC = () => {
+    const anchors: {
+        content: React.ReactNode;
+        href: string;
+    }[] = [
+        {
+            content: "GoldRush API",
+            href: "https://www.covalenthq.com/docs/unified-api/",
+        },
+        {
+            content: "GoldRush Kit Components",
+            href: "https://github.com/covalenthq/goldrush-kit",
+        },
+        {
+            content: "GoldRush Block Explorer",
+            href: "https://github.com/covalenthq/goldrush-block-explorer",
+        },
+    ];
+
     return (
-        <footer className="flex w-full items-center justify-between gap-4 bg-red-900 py-4 px-8 border-t border-secondary-light dark:border-secondary-dark gbk-h-16">
-            <a
-                href="https://github.com/covalenthq/goldrush-kit"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="gbk-font-medium gbk-leading-none hover:gbk-underline"
-            >
-                GoldRush Kit Components
-            </a>
+        <footer className="gbk-flex gbk-w-full gbk-items-center gbk-justify-between gbk-gap-4 gbk-py-4 gbk-px-8 gbk-border-t border-secondary-light dark:border-secondary-dark">
+            <div className="gbk-flex gbk-flex-col gbk-gap-4 gbk-gap-y-2 lg:gbk-flex-row">
+                {anchors.map(({ content, href }) => (
+                    <a
+                        key={content?.toString()}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="gbk-font-medium hover:gbk-underline gbk-transition-all"
+                    >
+                        {content}
+                    </a>
+                ))}
+            </div>
 
             <a
                 href="https://www.covalenthq.com"
