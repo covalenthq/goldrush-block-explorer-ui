@@ -1,7 +1,7 @@
 import { Loader } from "@/components/shared";
 
-const Home: React.FC = () => {
+const Loading: React.FC = () => {
     return <Loader />;
 };
 
-export default Home;
+export default Loading;

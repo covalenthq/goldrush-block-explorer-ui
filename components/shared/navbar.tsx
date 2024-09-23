@@ -35,7 +35,7 @@ export const Navbar: React.FC = () => {
                       chains.find(
                           ({ name, chain_id }) =>
                               name === nameOrId ||
-                              chain_id.toString() === nameOrId.toString()
+                              chain_id?.toString() === nameOrId.toString()
                       ) ?? null;
                   if (foundChain) {
                       acc.push(foundChain);
@@ -49,7 +49,7 @@ export const Navbar: React.FC = () => {
         } else {
             const chain: ChainItem | null =
                 _chains.find(
-                    (chain) => chain.chain_id.toString() === chain_id
+                    (chain) => chain?.chain_id?.toString() === chain_id
                 ) ?? null;
             if (chain) {
                 changeSelectedChainHandler(chain);
@@ -63,11 +63,13 @@ export const Navbar: React.FC = () => {
 
     const changeSelectedChainHandler = useCallback(
         (chain: ChainItem) => {
-            const paths = path.split("/");
-            paths.shift();
-            paths[0] = chain.chain_id;
-            setSelectedChain(chain);
-            push(`/${paths.join("/")}`);
+            if (chain?.chain_id) {
+                const paths = path.split("/");
+                paths.shift();
+                paths[0] = chain.chain_id.toString();
+                setSelectedChain(chain);
+                push(`/${paths.join("/")}`);
+            }
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [path]
@@ -156,7 +158,7 @@ export const Navbar: React.FC = () => {
                         type="text"
                         name="search"
                         value={searchInput}
-                        placeholder="Address / Hash / Block / Domain Name"
+                        placeholder="Address / Block / Hash / Domain"
                         onChange={({ target: { value } }) =>
                             setSearchInput(value)
                         }
