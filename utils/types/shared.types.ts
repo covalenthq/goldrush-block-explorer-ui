@@ -1,4 +1,4 @@
-import { type Chain, type ChainID } from "@covalenthq/client-sdk";
+import { type Chain } from "@covalenthq/client-sdk";
 import { type GoldRushThemeType } from "@covalenthq/goldrush-kit";
 
 export interface GoldRushConfig {
@@ -8,6 +8,6 @@ export interface GoldRushConfig {
         subtitle: string;
         logo_url: string;
     };
-    chains: (Chain | ChainID)[];
+    chains: Chain[];
     gtag_id?: string | null;
 }

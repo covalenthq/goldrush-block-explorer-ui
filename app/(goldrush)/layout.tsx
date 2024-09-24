@@ -22,8 +22,8 @@ const GoldRushLayout: React.FC<{ children: React.ReactNode }> = ({
 
     return (
         <GoldRushProvider
-            apikey={process.env.NEXT_PUBLIC_COVALENT_API_KEY as string}
-            newTheme={goldrushConfig.theme}
+            apikey={process.env.NEXT_PUBLIC_GOLDRUSH_API_KEY as string}
+            theme={goldrushConfig.theme}
         >
             <Navbar />
             <section className="gbk-flex gbk-flex-1 gbk-p-8">
