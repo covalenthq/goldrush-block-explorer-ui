@@ -25,5 +25,5 @@ export const goldrushConfig: GoldRushConfig = {
         mode: "dark",
     },
     chains: [],
-    gtag_id: process.env.NEXT_PUBLIC_GOOGLE_TAG_ID || null,
+    gtag_id: process.env.NEXT_PUBLIC_GOOGLE_TAG_ID ?? null,
 };

@@ -25,7 +25,6 @@ export const Navbar: React.FC = () => {
 
     const [searchInput, setSearchInput] = useState<string>("");
     const [open, setOpen] = useState<boolean>(false);
-
     useEffect(() => {
         if (!chains) return;
 
@@ -57,9 +56,7 @@ export const Navbar: React.FC = () => {
                 notFound();
             }
         }
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [chains]);
+    }, [chains, chain_id]);
 
     const changeSelectedChainHandler = useCallback(
         (chain: ChainItem) => {
@@ -71,8 +68,7 @@ export const Navbar: React.FC = () => {
                 push(`/${paths.join("/")}`);
             }
         },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [path]
+        [path, push, setSelectedChain]
     );
 
     useDebounce(
@@ -87,34 +83,27 @@ export const Navbar: React.FC = () => {
 
     const searchResultsHandler = useCallback(
         (input: string, chain: ChainItem) => {
-            if (!input) {
-                return;
-            }
+            if (!input) return;
 
             const searchType = searchHandler(input);
             let page: string | null = null;
             switch (searchType) {
-                case "address": {
+                case "address":
                     page = "address";
                     break;
-                }
-                case "tx": {
+                case "tx":
                     page = "transaction";
                     break;
-                }
-                case "block": {
+                case "block":
                     page = "block";
                     break;
-                }
-                default: {
+                default:
                     push(`/not-found`);
                     return;
-                }
             }
             push(`/${chain.chain_id}/${page}/${input}`);
         },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        []
+        [push, searchHandler]
     );
 
     return (

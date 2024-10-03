@@ -1,5 +1,3 @@
-"use client";
-
 import { PoweredByCovalent } from ".";
 
 export const Footer: React.FC = () => {
