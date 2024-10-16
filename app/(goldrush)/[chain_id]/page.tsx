@@ -28,7 +28,7 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                         rel="noopener noreferrer"
                         className="hover:gbk-underline gbk-transition-all"
                     >
-                        Goldrush
+                        GoldRush
                     </a>
                 </p>
             </div>

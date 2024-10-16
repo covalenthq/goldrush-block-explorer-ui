@@ -10,7 +10,7 @@ export const Footer: React.FC = () => {
             href: "https://www.covalenthq.com/docs/unified-api/",
         },
         {
-            content: "GoldRush Kit Components",
+            content: "GoldRush UI Kit",
             href: "https://github.com/covalenthq/goldrush-kit",
         },
         {

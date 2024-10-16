@@ -1,6 +1,7 @@
 "use client";
 
 import { goldrushConfig } from "@/goldrush.config";
+import { timestampParser } from "@/utils/functions";
 import { useDebounce } from "@/utils/hooks";
 import { type Price, type Chain, type ChainItem } from "@covalenthq/client-sdk";
 import {
@@ -33,6 +34,7 @@ export const Navbar: React.FC = () => {
     const [searchInput, setSearchInput] = useState<string>("");
     const [open, setOpen] = useState<boolean>(false);
     const [nativePrice, setNativePrice] = useState<Price | null>(null);
+    const [delta, setDelta] = useState<number | null>(null);
 
     useEffect(() => {
         if (!chains) return;
@@ -77,11 +79,26 @@ export const Navbar: React.FC = () => {
                     return;
                 }
 
+                const today = new Date();
+                const yesterday = new Date(today);
+                yesterday.setDate(today.getDate() - 1);
+
+                setNativePrice(null);
                 const { data, ...error } =
                     await goldrushClient.PricingService.getTokenPrices(
                         chain_id as Chain,
                         "USD",
-                        "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                        "0x0000000000000000000000000000000000000000",
+                        {
+                            from: timestampParser(
+                                today.toISOString(),
+                                "YYYY MM DD"
+                            ),
+                            to: timestampParser(
+                                yesterday.toISOString(),
+                                "YYYY MM DD"
+                            ),
+                        }
                     );
 
                 if (error.error) {
@@ -90,6 +107,20 @@ export const Navbar: React.FC = () => {
 
                 if (data?.[0]?.items?.[0]) {
                     setNativePrice(data[0].items[0]);
+                }
+
+                if (
+                    data?.[0]?.items?.[0]?.price &&
+                    data?.[0]?.items?.[1]?.price
+                ) {
+                    const todayPrice = data[0].items[0].price;
+                    const yesterdayPrice = data[0].items[1].price;
+                    setDelta(
+                        +(
+                            ((todayPrice - yesterdayPrice) / yesterdayPrice) *
+                            100
+                        ).toFixed(2)
+                    );
                 }
             } catch (error) {
                 console.error(error);
@@ -174,17 +205,27 @@ export const Navbar: React.FC = () => {
 
                 {nativePrice && (
                     <div className="gbk-whitespace-nowrap text-secondary-light dark:text-secondary-dark gbk-text-sm">
-                        <p>
+                        <p className="text-foreground-light dark:text-foreground-dark">
                             {
                                 nativePrice.contract_metadata
                                     ?.contract_ticker_symbol
                             }
-                            : <span>{nativePrice.pretty_price}</span>
+                            : <span>{nativePrice.pretty_price}</span>{" "}
+                            {delta !== null && (
+                                <span
+                                    className={
+                                        delta < 0
+                                            ? "text-danger"
+                                            : "text-success"
+                                    }
+                                >
+                                    {delta > 0 ? "+" : ""}
+                                    {delta}%
+                                </span>
+                            )}
                         </p>
 
-                        <p>
-                            <Timestamp timestamp={nativePrice.date} />
-                        </p>
+                        <Timestamp timestamp={nativePrice.date} />
                     </div>
                 )}
             </div>
