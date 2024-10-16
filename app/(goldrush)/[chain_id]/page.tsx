@@ -21,7 +21,15 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                 </h3>
 
                 <p className="text-secondary-light dark:text-secondary-dark gbk-font-bold">
-                    Seamless Cross-Chain Exploration, Powered by Goldrush
+                    Seamless Cross-Chain Exploration, Powered by{" "}
+                    <a
+                        href="http://goldrush.dev"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:gbk-underline gbk-transition-all"
+                    >
+                        Goldrush
+                    </a>
                 </p>
             </div>
 

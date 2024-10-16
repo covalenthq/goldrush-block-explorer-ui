@@ -20,7 +20,7 @@ export const Footer: React.FC = () => {
     ];
 
     return (
-        <footer className="gbk-flex gbk-w-full gbk-items-center gbk-justify-between gbk-gap-4 gbk-py-4 gbk-px-8 gbk-border-t border-secondary-light dark:border-secondary-dark">
+        <footer className="gbk-flex gbk-w-full gbk-items-center gbk-justify-between gbk-gap-4 gbk-py-8 gbk-px-8 gbk-border-t border-secondary-light dark:border-secondary-dark">
             <div className="gbk-flex gbk-flex-col gbk-gap-4 gbk-gap-y-2 lg:gbk-flex-row">
                 {anchors.map(({ content, href }) => (
                     <a
@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
                 href="https://www.covalenthq.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="gbk-w-72 gbk-flex"
+                className="gbk-w-48 gbk-flex"
             >
                 <PoweredByCovalent />
             </a>
