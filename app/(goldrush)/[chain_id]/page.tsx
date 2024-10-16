@@ -5,12 +5,26 @@ import {
     GasCard,
     LatestBlocks,
     LatestTransactions,
+    useGoldRush,
 } from "@covalenthq/goldrush-kit";
 import Link from "next/link";
 
 const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
+    const { selectedChain } = useGoldRush();
+
     return (
         <main className="gbk-flex gbk-w-full gbk-flex-col gbk-gap-4">
+            <div className="gbk-text-center gbk-flex gbk-items-center gbk-gap-y-2 gbk-flex-col gbk-py-4">
+                <h3 className="gbk-text-4xl gbk-font-medium gbk-capitalize">
+                    GoldRush {selectedChain?.name?.replaceAll("-", " ")}{" "}
+                    Explorer
+                </h3>
+
+                <p className="text-secondary-light dark:text-secondary-dark gbk-font-bold">
+                    Seamless Cross-Chain Exploration, Powered by Goldrush
+                </p>
+            </div>
+
             <GasCard chain_name={chain_id} />
 
             <div className="gbk-grid gbk-grid-cols-1 gbk-gap-8 xl:gbk-grid-cols-2">
