@@ -21,14 +21,16 @@ export const Navbar: React.FC = () => {
 
     const { push } = useRouter();
     const path = usePathname();
-    const { chain_id } = useParams<{ chain_id: string }>();
+    const { chain_id } = useParams<{
+        chain_id: string;
+    }>();
 
     const [searchInput, setSearchInput] = useState<string>("");
     const [open, setOpen] = useState<boolean>(false);
     useEffect(() => {
         if (!chains) return;
 
-        const _chains: ChainItem[] = goldrushConfig.chains.length
+        const _whitelistedChains: ChainItem[] = goldrushConfig.chains.length
             ? goldrushConfig.chains.reduce((acc: ChainItem[], nameOrId) => {
                   const foundChain: ChainItem | null =
                       chains.find(
@@ -44,11 +46,13 @@ export const Navbar: React.FC = () => {
             : chains;
 
         if (!chain_id) {
-            changeSelectedChainHandler(_chains[0]);
+            changeSelectedChainHandler(_whitelistedChains[0], true);
         } else {
             const chain: ChainItem | null =
-                _chains.find(
-                    (chain) => chain?.chain_id?.toString() === chain_id
+                _whitelistedChains.find(
+                    (chain) =>
+                        chain?.name === chain_id ||
+                        chain?.chain_id?.toString() === chain_id.toString()
                 ) ?? null;
             if (chain) {
                 changeSelectedChainHandler(chain);
@@ -56,20 +60,24 @@ export const Navbar: React.FC = () => {
                 notFound();
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [chains, chain_id]);
 
-    const changeSelectedChainHandler = useCallback(
-        (chain: ChainItem) => {
-            if (chain?.chain_id) {
-                const paths = path.split("/");
-                paths.shift();
-                paths[0] = chain.chain_id.toString();
-                setSelectedChain(chain);
-                push(`/${paths.join("/")}`);
-            }
-        },
-        [path, push, setSelectedChain]
-    );
+    const changeSelectedChainHandler = (
+        chain: ChainItem,
+        redirect: boolean = false
+    ) => {
+        if (!chain?.name) {
+            return;
+        }
+        setSelectedChain(chain);
+        if (redirect || chain_id?.length === 1) {
+            const paths = path.split("/");
+            paths.shift();
+            paths[0] = chain.name;
+            push(`/${paths.join("/")}`);
+        }
+    };
 
     useDebounce(
         () => {
@@ -101,7 +109,7 @@ export const Navbar: React.FC = () => {
                     push(`/not-found`);
                     return;
             }
-            push(`/${chain.chain_id}/${page}/${input}`);
+            push(`/${chain.name}/${page}/${input}`);
         },
         [push, searchHandler]
     );
@@ -109,7 +117,7 @@ export const Navbar: React.FC = () => {
     return (
         <nav className="bg-background-light text-foreground-light dark:bg-background-dark dark:text-foreground-dark border-secondary-light dark:border-secondary-dark gbk-sticky gbk-left-0 gbk-top-0 gbk-z-50 gbk-flex gbk-w-full gbk-flex-wrap gbk-items-center gbk-justify-between gbk-gap-x-4 gbk-border-b gbk-px-8 gbk-py-4 md:gbk-flex-nowrap">
             <Link
-                href={`/${selectedChain?.chain_id}`}
+                href={`/${selectedChain?.name}`}
                 className="gbk-mr-auto gbk-flex gbk-w-fit gbk-items-center gbk-gap-2"
             >
                 <figure className="gbk-relative gbk-h-10 gbk-w-10">
@@ -155,7 +163,9 @@ export const Navbar: React.FC = () => {
                     />
 
                     <ChainSelector
-                        onChangeChain={changeSelectedChainHandler}
+                        onChangeChain={(newChain) =>
+                            changeSelectedChainHandler(newChain, true)
+                        }
                         chain_options={goldrushConfig.chains}
                     />
                 </div>
