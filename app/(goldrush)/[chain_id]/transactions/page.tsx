@@ -13,7 +13,7 @@ const TransactionsPage: React.FC<TransactionsPageProps> = ({
                 chain_name={chain_id}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
-                actionable_from={(from__address) => ({
+                actionable_address={(from__address) => ({
                     parent: Link,
                     parentProps: {
                         href: `/${chain_id}/address/${from__address}`,
@@ -22,10 +22,10 @@ const TransactionsPage: React.FC<TransactionsPageProps> = ({
                 })}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
-                actionable_to={(to__address) => ({
+                actionable_transaction={(tx_hash) => ({
                     parent: Link,
                     parentProps: {
-                        href: `/${chain_id}/address/${to__address}`,
+                        href: `/${chain_id}/transaction/${tx_hash}`,
                         className: "hover:underline",
                     },
                 })}

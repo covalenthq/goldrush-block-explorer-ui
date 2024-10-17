@@ -49,6 +49,16 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                                     className: "hover:underline",
                                 },
                             })}
+                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                            // @ts-expect-error
+                            actionable_redirect={() => ({
+                                parent: Link,
+                                parentProps: {
+                                    href: `/${chain_id}/blocks`,
+                                    className:
+                                        "hover:gbk-underline gbk-text-center gbk-w-fit gbk-mx-auto",
+                                },
+                            })}
                         />
                     </div>
                 </div>
@@ -74,6 +84,16 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                                 parentProps: {
                                     href: `/${chain_id}/transaction/${tx_hash}`,
                                     className: "hover:underline",
+                                },
+                            })}
+                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                            // @ts-expect-error
+                            actionable_redirect={() => ({
+                                parent: Link,
+                                parentProps: {
+                                    href: `/${chain_id}/transactions`,
+                                    className:
+                                        "hover:gbk-underline gbk-text-center gbk-w-fit gbk-mx-auto",
                                 },
                             })}
                         />
