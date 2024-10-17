@@ -5,7 +5,9 @@ import { goldrushConfig } from "@/goldrush.config";
 import { GoldRushProvider } from "@covalenthq/goldrush-kit";
 import { useEffect, useState } from "react";
 
-const GoldRushLayout = ({ children }: { children: React.ReactNode }) => {
+const GoldRushLayout: React.FC<{
+    children: React.ReactNode;
+}> = ({ children }) => {
     const [isWindowDefined, setIsWindowDefined] = useState<boolean>(false);
 
     useEffect(() => {
