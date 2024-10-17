@@ -129,6 +129,14 @@ export const Navbar: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [chain_id]);
 
+    useEffect(() => {
+        if (!selectedChain) {
+            return;
+        }
+        changeSelectedChainHandler(selectedChain, true);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedChain]);
+
     const changeSelectedChainHandler = (
         chain: ChainItem,
         redirect: boolean = false
@@ -144,16 +152,6 @@ export const Navbar: React.FC = () => {
             push(`/${paths.join("/")}`);
         }
     };
-
-    useDebounce(
-        () => {
-            if (searchInput && selectedChain) {
-                searchResultsHandler(searchInput, selectedChain);
-            }
-        },
-        500,
-        [searchInput, selectedChain]
-    );
 
     const searchResultsHandler = useCallback(
         (input: string, chain: ChainItem) => {
@@ -178,6 +176,16 @@ export const Navbar: React.FC = () => {
             push(`/${chain.name}/${page}/${input}`);
         },
         [push, searchHandler]
+    );
+
+    useDebounce(
+        () => {
+            if (searchInput && selectedChain) {
+                searchResultsHandler(searchInput, selectedChain);
+            }
+        },
+        500,
+        [searchInput, selectedChain]
     );
 
     return (

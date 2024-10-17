@@ -6,7 +6,7 @@ import { AddressActivityList } from "@covalenthq/goldrush-kit";
 const AddressActivityPage: React.FC<AddressPageProps> = ({
     params: { address },
 }) => {
-    return <AddressActivityList address={address} />;
+    return <AddressActivityList address={address} changeSelectedChain />;
 };
 
 export default AddressActivityPage;
