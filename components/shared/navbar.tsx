@@ -226,8 +226,8 @@ export const Navbar: React.FC = () => {
     };
 
     return (
-        <nav className="bg-background-light text-foreground-light dark:bg-background-dark dark:text-foreground-dark border-secondary-light dark:border-secondary-dark gbk-sticky gbk-left-0 gbk-top-0 gbk-z-50 gbk-grid gbk-grid-cols-3 gbk-w-full gbk-items-center gbk-justify-between gbk-gap-x-4 gbk-border-b gbk-px-8 gbk-py-4">
-            <div className="gbk-flex gbk-items-center gbk-gap-x-8">
+        <nav className="bg-background-light text-foreground-light dark:bg-background-dark dark:text-foreground-dark border-secondary-light dark:border-secondary-dark gbk-sticky gbk-left-0 gbk-top-0 gbk-z-50 gbk-grid gbk-grid-cols-2 xl:gbk-grid-cols-3 gbk-w-full gbk-items-center gbk-justify-between gbk-gap-4 gbk-border-b gbk-px-8 gbk-py-4">
+            <div className="gbk-flex gbk-items-center gbk-gap-x-8 gbk-col-span-2 xl:gbk-col-span-1">
                 <Link
                     href={`/${selectedChain?.name}`}
                     className="gbk-flex gbk-w-fit gbk-items-center gbk-gap-2"
@@ -295,101 +295,101 @@ export const Navbar: React.FC = () => {
                         </p>
                     </div>
                 )}
-            </div>
 
-            {/* <input
-                id="menu"
-                type="checkbox"
-                role="button"
-                onClick={() => setOpen(!open)}
-                className="gbk-ml-auto lg:gbk-hidden"
-                defaultChecked={open}
-            />
+                <input
+                    id="menu"
+                    type="checkbox"
+                    role="button"
+                    onClick={() => setOpen(!open)}
+                    className="gbk-ml-auto lg:gbk-hidden"
+                    defaultChecked={open}
+                />
+            </div>
 
             <div
                 className={`${
                     open ? "gbk-max-h-40" : "gbk-max-h-0 gbk-overflow-hidden"
-                } gbk-flex gbk-w-full gbk-items-center gbk-justify-between gbk-transition-all gbk-duration-500 gbk-ease-in-out lg:gbk-max-h-fit lg:gbk-flex-row`}
-            > */}
-            <div className="gbk-mt-4 gbk-flex gbk-flex-col gbk-items-center gbk-gap-2 lg:gbk-mx-auto lg:gbk-mt-0 lg:gbk-flex-row">
-                <form
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                        searchResultsHandler(searchInput);
-                    }}
-                    className="gbk-flex gbk-items-center gbk-gap-x-2 bg-background-light dark:bg-background-dark text-foreground-light dark:text-foreground-dark placeholder:text-secondary-light dark:placeholder:text-secondary-dark rounded border border-secondary-light dark:border-secondary-dark gbk-px-2 gbk-w-124 gbk-justify-between gbk-h-9"
-                >
-                    <input
-                        type="text"
-                        name="search"
-                        value={searchInput}
-                        placeholder="Address / Block / Hash / Domain"
-                        onChange={({ target: { value } }) =>
-                            setSearchInput(value)
-                        }
-                        className="gbk-w-full gbk-outline-none gbk-bg-transparent"
-                    />
+                } gbk-grid gbk-grid-cols-2 gbk-gap-4 gbk-col-span-2 gbk-w-full gbk-items-center gbk-justify-between gbk-transition-all gbk-duration-500 gbk-ease-in-out lg:gbk-max-h-fit`}
+            >
+                <div className="gbk-col-span-2 lg:gbk-col-span-1 gbk-mt-4 gbk-flex gbk-flex-col lg:gbk-items-center gbk-gap-2 lg:gbk-mx-auto lg:gbk-mt-0 lg:gbk-flex-row">
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            searchResultsHandler(searchInput);
+                        }}
+                        className="gbk-flex gbk-items-center gbk-gap-x-2 bg-background-light dark:bg-background-dark text-foreground-light dark:text-foreground-dark placeholder:text-secondary-light dark:placeholder:text-secondary-dark rounded border border-secondary-light dark:border-secondary-dark gbk-px-2 gbk-w-124 gbk-max-w-full gbk-justify-between gbk-h-9"
+                    >
+                        <input
+                            type="text"
+                            name="search"
+                            value={searchInput}
+                            placeholder="Address / Block / Hash / Domain"
+                            onChange={({ target: { value } }) =>
+                                setSearchInput(value)
+                            }
+                            className="gbk-w-full gbk-outline-none gbk-bg-transparent"
+                        />
 
-                    <div className="gbk-flex gbk-items-center gbk-gap-x-2">
-                        <button
-                            type="button"
-                            onClick={() => {
-                                clearSearchInputHandler();
-                            }}
-                            disabled={!searchInput}
-                            className="gbk-w-4"
-                        >
-                            {searchInput ? (
+                        <div className="gbk-flex gbk-items-center gbk-gap-x-2">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    clearSearchInputHandler();
+                                }}
+                                disabled={!searchInput}
+                                className="gbk-w-4"
+                            >
+                                {searchInput ? (
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 -960 960 960"
+                                        fill="currentColor"
+                                        className="gbk-w-full"
+                                    >
+                                        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224z" />
+                                    </svg>
+                                ) : (
+                                    "\u00A0"
+                                )}
+                            </button>
+
+                            <button
+                                type="submit"
+                                disabled={!searchInput}
+                                className="gbk-w-6"
+                            >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 -960 960 960"
                                     fill="currentColor"
-                                    className="gbk-w-full"
+                                    className="bg-primary-light dark:bg-primary-dark rounded gbk-p-1 gbk-w-full"
                                 >
-                                    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224z" />
+                                    <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580t75.5-184.5T380-840t184.5 75.5T640-580q0 44-14 83t-38 69l252 252zM380-400q75 0 127.5-52.5T560-580t-52.5-127.5T380-760t-127.5 52.5T200-580t52.5 127.5T380-400" />
                                 </svg>
-                            ) : (
-                                "\u00A0"
-                            )}
-                        </button>
+                            </button>
+                        </div>
+                    </form>
 
-                        <button
-                            type="submit"
-                            disabled={!searchInput}
-                            className="gbk-w-6"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 -960 960 960"
-                                fill="currentColor"
-                                className="bg-primary-light dark:bg-primary-dark rounded gbk-p-1 gbk-w-full"
-                            >
-                                <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580t75.5-184.5T380-840t184.5 75.5T640-580q0 44-14 83t-38 69l252 252zM380-400q75 0 127.5-52.5T560-580t-52.5-127.5T380-760t-127.5 52.5T200-580t52.5 127.5T380-400" />
-                            </svg>
-                        </button>
-                    </div>
-                </form>
+                    <ChainSelector
+                        onChangeChain={(newChain) =>
+                            changeSelectedChainHandler(newChain, true)
+                        }
+                        chain_options={goldrushConfig.chains}
+                    />
+                </div>
 
-                <ChainSelector
-                    onChangeChain={(newChain) =>
-                        changeSelectedChainHandler(newChain, true)
+                <input
+                    id="theme-toggle"
+                    className="dark:text-background-light text-background-dark lg:gbk-ml-auto gbk-w-4 gbk-h-4"
+                    type="checkbox"
+                    defaultChecked={theme.mode === "light"}
+                    onClick={() =>
+                        updateThemeHandler({
+                            mode: theme.mode === "light" ? "dark" : "light",
+                        })
                     }
-                    chain_options={goldrushConfig.chains}
                 />
             </div>
-
-            <input
-                id="theme-toggle"
-                className="dark:text-background-light text-background-dark gbk-ml-auto"
-                type="checkbox"
-                defaultChecked={theme.mode === "light"}
-                onClick={() =>
-                    updateThemeHandler({
-                        mode: theme.mode === "light" ? "dark" : "light",
-                    })
-                }
-            />
-            {/* </div> */}
         </nav>
     );
 };
