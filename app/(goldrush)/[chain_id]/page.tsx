@@ -46,7 +46,7 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                                 parent: Link,
                                 parentProps: {
                                     href: `/${chain_id}/block/${block}`,
-                                    className: "hover:underline",
+                                    className: "hover:gbk-underline",
                                 },
                             })}
                             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -56,7 +56,7 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                                 parentProps: {
                                     href: `/${chain_id}/blocks`,
                                     className:
-                                        "hover:gbk-underline gbk-text-center gbk-w-fit gbk-mx-auto",
+                                        "hover:gbk-underline gbk-w-fit gbk-mx-auto",
                                 },
                             })}
                         />
@@ -70,11 +70,11 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                             chain_name={chain_id}
                             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                             // @ts-expect-error
-                            actionable_address={(from__address) => ({
+                            actionable_address={(address) => ({
                                 parent: Link,
                                 parentProps: {
-                                    href: `/${chain_id}/address/${from__address}`,
-                                    className: "hover:underline",
+                                    href: `/${chain_id}/address/${address}`,
+                                    className: "hover:gbk-underline",
                                 },
                             })}
                             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -83,7 +83,7 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                                 parent: Link,
                                 parentProps: {
                                     href: `/${chain_id}/transaction/${tx_hash}`,
-                                    className: "hover:underline",
+                                    className: "hover:gbk-underline",
                                 },
                             })}
                             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -93,7 +93,7 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                                 parentProps: {
                                     href: `/${chain_id}/transactions`,
                                     className:
-                                        "hover:gbk-underline gbk-text-center gbk-w-fit gbk-mx-auto",
+                                        "hover:gbk-underline gbk-w-fit gbk-mx-auto",
                                 },
                             })}
                         />

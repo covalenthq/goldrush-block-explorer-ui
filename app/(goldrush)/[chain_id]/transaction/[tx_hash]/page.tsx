@@ -17,20 +17,20 @@ const TransactionPage: React.FC<TransactionPageProps> = ({
                 tx_hash={tx_hash}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
-                actionable_from={(from__address) => ({
+                actionable_from={(from_address) => ({
                     parent: Link,
                     parentProps: {
-                        href: `/${chain_id}/address/${from__address}`,
-                        className: "hover:underline",
+                        href: `/${chain_id}/address/${from_address}`,
+                        className: "hover:gbk-underline",
                     },
                 })}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
-                actionable_to={(to__address) => ({
+                actionable_to={(to_address) => ({
                     parent: Link,
                     parentProps: {
-                        href: `/${chain_id}/address/${to__address}`,
-                        className: "hover:underline",
+                        href: `/${chain_id}/address/${to_address}`,
+                        className: "hover:gbk-underline",
                     },
                 })}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -39,7 +39,7 @@ const TransactionPage: React.FC<TransactionPageProps> = ({
                     parent: Link,
                     parentProps: {
                         href: `/${chain_id}/block/${block_height}`,
-                        className: "hover:underline",
+                        className: "hover:gbk-underline",
                     },
                 })}
             />
@@ -48,20 +48,20 @@ const TransactionPage: React.FC<TransactionPageProps> = ({
                 tx_hash={tx_hash}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
-                actionable_from={(from__address) => ({
+                actionable_from={(from_address) => ({
                     parent: Link,
                     parentProps: {
-                        href: `/${chain_id}/address/${from__address}`,
-                        className: "hover:underline",
+                        href: `/${chain_id}/address/${from_address}`,
+                        className: "hover:gbk-underline",
                     },
                 })}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
-                actionable_to={(to__address) => ({
+                actionable_to={(to_address) => ({
                     parent: Link,
                     parentProps: {
-                        href: `/${chain_id}/address/${to__address}`,
-                        className: "hover:underline",
+                        href: `/${chain_id}/address/${to_address}`,
+                        className: "hover:gbk-underline",
                     },
                 })}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -70,7 +70,7 @@ const TransactionPage: React.FC<TransactionPageProps> = ({
                     parent: Link,
                     parentProps: {
                         href: `/${chain_id}/block/${block_height}`,
-                        className: "hover:underline",
+                        className: "hover:gbk-underline",
                     },
                 })}
             />

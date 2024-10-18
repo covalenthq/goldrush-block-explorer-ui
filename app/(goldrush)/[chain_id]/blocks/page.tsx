@@ -15,7 +15,7 @@ const BlocksPage: React.FC<BlocksPageProps> = ({ params: { chain_id } }) => {
                     parent: Link,
                     parentProps: {
                         href: `/${chain_id}/block/${block}`,
-                        className: "hover:underline",
+                        className: "hover:gbk-underline",
                     },
                 })}
             />
