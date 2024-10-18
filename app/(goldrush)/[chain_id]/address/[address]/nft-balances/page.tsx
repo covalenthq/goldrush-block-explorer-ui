@@ -25,7 +25,7 @@ const AddressNFTBalancesPage: React.FC<AddressPageProps> = ({
                     parent: Link,
                     parentProps: {
                         href: `/${chain_id}/address/${address}`,
-                        className: "hover:underline",
+                        className: "hover:gbk-underline",
                     },
                 })}
             />

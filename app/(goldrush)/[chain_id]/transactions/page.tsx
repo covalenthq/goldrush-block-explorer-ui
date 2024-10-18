@@ -17,7 +17,7 @@ const TransactionsPage: React.FC<TransactionsPageProps> = ({
                     parent: Link,
                     parentProps: {
                         href: `/${chain_id}/address/${address}`,
-                        className: "hover:underline",
+                        className: "hover:gbk-underline",
                     },
                 })}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -26,7 +26,7 @@ const TransactionsPage: React.FC<TransactionsPageProps> = ({
                     parent: Link,
                     parentProps: {
                         href: `/${chain_id}/block/${block_height}`,
-                        className: "hover:underline",
+                        className: "hover:gbk-underline",
                     },
                 })}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -35,7 +35,7 @@ const TransactionsPage: React.FC<TransactionsPageProps> = ({
                     parent: Link,
                     parentProps: {
                         href: `/${chain_id}/transaction/${tx_hash}`,
-                        className: "hover:underline",
+                        className: "hover:gbk-underline",
                     },
                 })}
             />

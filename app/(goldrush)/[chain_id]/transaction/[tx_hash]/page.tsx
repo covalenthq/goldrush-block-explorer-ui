@@ -21,7 +21,7 @@ const TransactionPage: React.FC<TransactionPageProps> = ({
                     parent: Link,
                     parentProps: {
                         href: `/${chain_id}/address/${from_address}`,
-                        className: "hover:underline",
+                        className: "hover:gbk-underline",
                     },
                 })}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -30,7 +30,7 @@ const TransactionPage: React.FC<TransactionPageProps> = ({
                     parent: Link,
                     parentProps: {
                         href: `/${chain_id}/address/${to_address}`,
-                        className: "hover:underline",
+                        className: "hover:gbk-underline",
                     },
                 })}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -39,7 +39,7 @@ const TransactionPage: React.FC<TransactionPageProps> = ({
                     parent: Link,
                     parentProps: {
                         href: `/${chain_id}/block/${block_height}`,
-                        className: "hover:underline",
+                        className: "hover:gbk-underline",
                     },
                 })}
             />
@@ -52,7 +52,7 @@ const TransactionPage: React.FC<TransactionPageProps> = ({
                     parent: Link,
                     parentProps: {
                         href: `/${chain_id}/address/${from_address}`,
-                        className: "hover:underline",
+                        className: "hover:gbk-underline",
                     },
                 })}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -61,7 +61,7 @@ const TransactionPage: React.FC<TransactionPageProps> = ({
                     parent: Link,
                     parentProps: {
                         href: `/${chain_id}/address/${to_address}`,
-                        className: "hover:underline",
+                        className: "hover:gbk-underline",
                     },
                 })}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -70,7 +70,7 @@ const TransactionPage: React.FC<TransactionPageProps> = ({
                     parent: Link,
                     parentProps: {
                         href: `/${chain_id}/block/${block_height}`,
-                        className: "hover:underline",
+                        className: "hover:gbk-underline",
                     },
                 })}
             />
