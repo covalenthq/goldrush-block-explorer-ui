@@ -9,7 +9,12 @@ const config: Config = {
     ],
     prefix: "gbk-",
     theme: {
-        extend: {},
+        extend: {
+            width: {
+                104: "26rem",
+                124: "31rem",
+            },
+        },
     },
     plugins: [],
 };
