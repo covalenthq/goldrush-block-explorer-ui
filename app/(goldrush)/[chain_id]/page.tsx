@@ -56,7 +56,7 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                                 parentProps: {
                                     href: `/${chain_id}/blocks`,
                                     className:
-                                        "hover:gbk-underline gbk-text-center gbk-w-fit gbk-mx-auto",
+                                        "hover:underline gbk-w-fit gbk-mx-auto",
                                 },
                             })}
                         />
@@ -93,7 +93,7 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                                 parentProps: {
                                     href: `/${chain_id}/transactions`,
                                     className:
-                                        "hover:gbk-underline gbk-text-center gbk-w-fit gbk-mx-auto",
+                                        "hover:underline gbk-w-fit gbk-mx-auto",
                                 },
                             })}
                         />
