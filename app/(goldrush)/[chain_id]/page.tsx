@@ -70,10 +70,10 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                             chain_name={chain_id}
                             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                             // @ts-expect-error
-                            actionable_address={(from__address) => ({
+                            actionable_address={(address) => ({
                                 parent: Link,
                                 parentProps: {
-                                    href: `/${chain_id}/address/${from__address}`,
+                                    href: `/${chain_id}/address/${address}`,
                                     className: "hover:underline",
                                 },
                             })}

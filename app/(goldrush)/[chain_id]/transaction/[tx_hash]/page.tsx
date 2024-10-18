@@ -17,19 +17,19 @@ const TransactionPage: React.FC<TransactionPageProps> = ({
                 tx_hash={tx_hash}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
-                actionable_from={(from__address) => ({
+                actionable_from={(from_address) => ({
                     parent: Link,
                     parentProps: {
-                        href: `/${chain_id}/address/${from__address}`,
+                        href: `/${chain_id}/address/${from_address}`,
                         className: "hover:underline",
                     },
                 })}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
-                actionable_to={(to__address) => ({
+                actionable_to={(to_address) => ({
                     parent: Link,
                     parentProps: {
-                        href: `/${chain_id}/address/${to__address}`,
+                        href: `/${chain_id}/address/${to_address}`,
                         className: "hover:underline",
                     },
                 })}
@@ -48,19 +48,19 @@ const TransactionPage: React.FC<TransactionPageProps> = ({
                 tx_hash={tx_hash}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
-                actionable_from={(from__address) => ({
+                actionable_from={(from_address) => ({
                     parent: Link,
                     parentProps: {
-                        href: `/${chain_id}/address/${from__address}`,
+                        href: `/${chain_id}/address/${from_address}`,
                         className: "hover:underline",
                     },
                 })}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
-                actionable_to={(to__address) => ({
+                actionable_to={(to_address) => ({
                     parent: Link,
                     parentProps: {
-                        href: `/${chain_id}/address/${to__address}`,
+                        href: `/${chain_id}/address/${to_address}`,
                         className: "hover:underline",
                     },
                 })}
