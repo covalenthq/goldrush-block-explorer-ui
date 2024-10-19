@@ -3,12 +3,14 @@
 import { goldrushConfig } from "@/goldrush.config";
 import { timestampParser } from "@/utils/functions";
 import { useDebounce } from "@/utils/hooks";
-import { type Price, type Chain, type ChainItem } from "@covalenthq/client-sdk";
 import {
-    ChainSelector,
-    Timestamp,
-    useGoldRush,
-} from "@covalenthq/goldrush-kit";
+    type Price,
+    type Chain,
+    type ChainItem,
+    type PriceItem,
+    calculatePrettyBalance,
+} from "@covalenthq/client-sdk";
+import { ChainSelector, useGoldRush } from "@covalenthq/goldrush-kit";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, useParams, usePathname, useRouter } from "next/navigation";
@@ -35,6 +37,7 @@ export const Navbar: React.FC = () => {
     const [open, setOpen] = useState<boolean>(false);
     const [nativePrice, setNativePrice] = useState<Price | null>(null);
     const [delta, setDelta] = useState<number | null>(null);
+    const [gasPrice, setGasPrice] = useState<PriceItem | null>(null);
 
     useEffect(() => {
         if (!chains) return;
@@ -84,20 +87,78 @@ export const Navbar: React.FC = () => {
                 yesterday.setDate(today.getDate() - 1);
 
                 setNativePrice(null);
-                const { data, ...error } =
-                    await goldrushClient.PricingService.getTokenPrices(
+                const [
+                    { data: nativePriceData, ...nativePriceError },
+                    { data: deltaData, ...deltaError },
+                ] = await Promise.all([
+                    goldrushClient.PricingService.getTokenPrices(
+                        chain_id as Chain,
+                        "USD",
+                        "0x0000000000000000000000000000000000000000"
+                    ),
+                    goldrushClient.PricingService.getTokenPrices(
                         chain_id as Chain,
                         "USD",
                         "0x0000000000000000000000000000000000000000",
                         {
-                            from: timestampParser(
-                                today.toISOString(),
-                                "YYYY MM DD"
-                            ),
                             to: timestampParser(
                                 yesterday.toISOString(),
                                 "YYYY MM DD"
                             ),
+                        }
+                    ),
+                ]);
+
+                if (nativePriceError.error) {
+                    throw nativePriceError;
+                }
+
+                if (deltaError.error) {
+                    throw deltaError;
+                }
+
+                if (nativePriceData?.[0]?.items?.[0]) {
+                    setNativePrice(nativePriceData[0].items[0]);
+                }
+
+                if (
+                    nativePriceData?.[0]?.items?.[0]?.price &&
+                    deltaData?.[0]?.items?.[0]?.price
+                ) {
+                    const todayPrice = nativePriceData[0].items[0].price;
+                    const yesterdayPrice = deltaData[0].items[0].price;
+                    setDelta(
+                        +(
+                            ((todayPrice - yesterdayPrice) / yesterdayPrice) *
+                            100
+                        ).toFixed(2)
+                    );
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        })();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [chain_id]);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                if (!chain_id) {
+                    return;
+                }
+
+                const today = new Date();
+                const yesterday = new Date(today);
+                yesterday.setDate(today.getDate() - 1);
+
+                setNativePrice(null);
+                const { data, ...error } =
+                    await goldrushClient.BaseService.getGasPrices(
+                        chain_id as Chain,
+                        "nativetokens",
+                        {
+                            quoteCurrency: "USD",
                         }
                     );
 
@@ -105,22 +166,8 @@ export const Navbar: React.FC = () => {
                     throw error;
                 }
 
-                if (data?.[0]?.items?.[0]) {
-                    setNativePrice(data[0].items[0]);
-                }
-
-                if (
-                    data?.[0]?.items?.[0]?.price &&
-                    data?.[0]?.items?.[1]?.price
-                ) {
-                    const todayPrice = data[0].items[0].price;
-                    const yesterdayPrice = data[0].items[1].price;
-                    setDelta(
-                        +(
-                            ((todayPrice - yesterdayPrice) / yesterdayPrice) *
-                            100
-                        ).toFixed(2)
-                    );
+                if (data?.items?.[0]) {
+                    setGasPrice(data?.items?.[0]);
                 }
             } catch (error) {
                 console.error(error);
@@ -212,13 +259,16 @@ export const Navbar: React.FC = () => {
                 </Link>
 
                 {nativePrice && (
-                    <div className="gbk-whitespace-nowrap text-secondary-light dark:text-secondary-dark gbk-text-sm">
-                        <p className="text-foreground-light dark:text-foreground-dark">
-                            {
-                                nativePrice.contract_metadata
-                                    ?.contract_ticker_symbol
-                            }
-                            : <span>{nativePrice.pretty_price}</span>{" "}
+                    <div className="gbk-whitespace-nowrap text-foreground-light dark:text-foreground-dark gbk-text-sm">
+                        <p>
+                            <span className="text-secondary-light dark:text-secondary-dark">
+                                {
+                                    nativePrice.contract_metadata
+                                        ?.contract_ticker_symbol
+                                }
+                                :{" "}
+                            </span>
+                            {nativePrice.pretty_price}{" "}
                             {delta !== null && (
                                 <span
                                     className={
@@ -233,7 +283,26 @@ export const Navbar: React.FC = () => {
                             )}
                         </p>
 
-                        <Timestamp timestamp={nativePrice.date} />
+                        <p>
+                            {path !== `/${chain_id}` && gasPrice ? (
+                                <>
+                                    <span className="text-secondary-light dark:text-secondary-dark">
+                                        Gas:{" "}
+                                    </span>
+                                    <span>
+                                        {calculatePrettyBalance(
+                                            Number(+(gasPrice.gas_price ?? 0)),
+                                            9,
+                                            true,
+                                            4
+                                        )}
+                                    </span>{" "}
+                                    GWEI
+                                </>
+                            ) : (
+                                "\u00A0"
+                            )}
+                        </p>
                     </div>
                 )}
             </div>
