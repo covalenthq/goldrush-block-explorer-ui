@@ -2,20 +2,30 @@
   <a href="https://goldrush.dev/products/goldrush/"  target="_blank" rel="noopener noreferrer">
     <img alt="GoldRush Block Explorer - powered by Covalent" src="./repo-static/goldrush-block-explorer-banner.png" style="max-width: 100%;"/>
   </a>
+  <br />
+
+[![GitHub license](https://img.shields.io/github/license/covalenthq/goldrush-block-explorer-ui)](https://github.com/covalenthq/goldrush-block-explorer-ui/blob/main/LICENSE)
+[![GitHub last commit](https://img.shields.io/github/last-commit/covalenthq/goldrush-block-explorer-ui)](https://github.com/covalenthq/goldrush-block-explorer-ui/commits/master)
+[![GitHub contributors](https://img.shields.io/github/contributors/covalenthq/goldrush-block-explorer-ui)](https://github.com/covalenthq/goldrush-block-explorer-ui/graphs/contributors)
+[![GitHub issues](https://img.shields.io/github/issues/covalenthq/goldrush-block-explorer-ui)](https://github.com/covalenthq/goldrush-block-explorer-ui/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/covalenthq/goldrush-block-explorer-ui)](https://github.com/covalenthq/goldrush-block-explorer-ui/pulls)
+[![GitHub stars](https://img.shields.io/github/stars/covalenthq/goldrush-block-explorer-ui)](https://github.com/covalenthq/goldrush-block-explorer-ui/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/covalenthq/goldrush-block-explorer-ui)](https://github.com/covalenthq/goldrush-block-explorer-ui/network/members)
+<!-- Additional sections of your README -->
+
 </div>
 
 <br/>
 
-<p align="center">
-  <img src="https://img.shields.io/github/license/covalenthq/goldrush-block-explorer" alt="Apache-2.0">
-</p>
+<h1 align="center">Beautifully designed Block Explorer template.</h1>
 
-# GoldRush Block Explorer
+<div align="center">
+Powered by <span><a href="https://github.com/covalenthq/goldrush-kit">GoldRush Kit.</a></span> Open-source. Customizable. 200+ Chains.
+</div>
 
-A cross chain block explorer kit.
-200+ Chains. Open-source. Customizable.
+## Ready-to-use customizable template
 
-> GoldRush Block Explorer uses [GoldRush Kit](https://github.com/covalenthq/goldrush-kit) for its UI elements.
+<a href="https://goldrush-block-explorer.vercel.app/">View live template</a>
 
 ## 1. Creating your own GoldRush Block Explorer
 
@@ -98,8 +108,6 @@ export const goldrushConfig: GoldRushConfig = {
 | [GoldRush Kit](https://github.com/covalenthq/goldrush-kit)                       | Beautifully designed React components for your dApp frontend.                   |
 | [GoldRush Block Explorer](https://github.com/covalenthq/goldrush-block-explorer) | A cross chain block explorer kit that can be customized.                        |
 | [GoldRush Decoder](https://github.com/covalenthq/goldrush-decoder)               | Decode unstructured, raw event logs into structured data with a simple API.     |
-| [GoldRush RevokeHub](https://github.com/covalenthq/goldrush-revokehub)           | One-stop platform for managing your digital assets securely and efficiently.    |
-| [GoldRush Airdrop Assist](https://github.com/covalenthq/goldrush-airdrop-assist) | Effortlessly filter and find all valid addresses for your next airdrop.         |
 
 ## Contributing
 
