@@ -12,8 +12,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/covalenthq/goldrush-block-explorer-ui)](https://github.com/covalenthq/goldrush-block-explorer-ui/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/covalenthq/goldrush-block-explorer-ui)](https://github.com/covalenthq/goldrush-block-explorer-ui/network/members)
 
-<!-- Additional sections of your README -->
-
 </div>
 
 <br/>
@@ -21,12 +19,12 @@
 <h1 align="center">Beautifully designed Block Explorer template.</h1>
 
 <div align="center">
-Powered by <span><a href="https://github.com/covalenthq/goldrush-kit">GoldRush Kit.</a></span> Open-source. Customizable. 200+ Chains.
+Powered by <span><a href="https://github.com/covalenthq/goldrush-kit">GoldRush Kit.</a></span> Open-source. Customizable. 100+ Chains.
 </div>
 
 ## Ready-to-use customizable template
 
-<a href="https://goldrush-block-explorer.vercel.app/">View live template</a>
+<a href="https://goldrush-block-explorer-ui.vercel.app/">View live template</a>
 
 ## One-click Deploy
 
@@ -36,13 +34,13 @@ Powered by <span><a href="https://github.com/covalenthq/goldrush-kit">GoldRush K
 
 The GoldRush Block Explorer is a Template Repository. It can be cloned and modified as per different specific use cases.
 
-1.  **Fork Repository**: To create a new deployment of the **GoldRush Block Explorer**, it needs to be forked. This can be done either by clicking the `Use this template` at the top of the repository or clicking [this](https://github.com/new?owner=covalenthq&template_name=goldrush-block-explorer&template_owner=covalenthq)
+1.  **Fork Repository**: Fork the repository either by clicking the `Use this template` at the top of the repository or clicking [here](https://github.com/new?owner=covalenthq&template_name=goldrush-block-explorer-ui&template_owner=covalenthq)
 
-2.  **Setting the GoldRush API Key**:
+2.  **Setup**:
 
     1. Install package dependencies using `npm install`.
 
-    2. The **GoldRush Block Explorer** uses the **GoldRush API Key** to function as expected. You can register for a free key on [GoldRush's website](https://goldrush.dev/platform/apikey). The API key needs to be placed in the [.env.local](./env.local) file, which needs to be created. Refer to [.env.example](./.env.example) for the a list of all the environmental variables used.
+    2. Create [.env.local](./env.local) in your root directory and add your [GoldRush API Key](https://goldrush.dev/platform/apikey). Refer to [.env.example](./.env.example) for the a list of all the environmental variables used.
 
     > Only the `NEXT_PUBLIC_GOLDRUSH_API_KEY` environmental key is mandatory.
 
@@ -104,7 +102,7 @@ export const goldrushConfig: GoldRushConfig = {
 
 2. **theme**: This is an extension of the theme config passed to the [GoldRush Kit](https://github.com/covalenthq/goldrush-kit). Explore these theme settings from [here](https://goldrush-kit.vercel.app/?path=/story/theme-config--theme-config).
 
-3. **chains**: A selection of all the chain the deployment offers. The desired chains can be passed to this array in multiple formats as shown the example below. By default, an empty array (`[]`) is passed here to provide the options all the 200+ chains supported by the [GoldRush API](https://goldrush.dev/docs/networks/). As a default behavior, the home page is rendered based using the first chain thats passed in this array.
+3. **chains**: A selection of all the chain the deployment offers. The desired chains can be passed to this array in multiple formats as shown the example below. By default, an empty array (`[]`) is passed here to provide the options all the 100+ chains supported by the [GoldRush API](https://goldrush.dev/docs/networks/). As a default behavior, the home page is rendered based using the first chain thats passed in this array.
 
     ```ts
     import { ChainID, ChainName } from "@covalenthq/client-sdk";
@@ -121,16 +119,16 @@ export const goldrushConfig: GoldRushConfig = {
 
 ## Features
 
-1. Real-time Block Explorer: Provides up-to-date information on blockchain transactions, blocks, and account balances in real time, giving users the latest data of 100+ chains.
-2. Stunning Designs Fast: Quickly build visually appealing designs with Tailwind CSS under the hood.
-3. Streamlined Workflow: Simplify development with the power and efficiency of Next.js 13.
+1. Real-time Block Explorer: Provides up-to-date information on blockchain transactions, blocks, and account balances in real time, giving users the latest data.
+2. Ready-to-use customizable template: Jumpstart your dApp journey with a beautifully designed UI that’s both intuitive and engaging.
+3. Cross Chain Support: Supports 100+ chains, providing a unified explorer for all your needs.
 4. Comprehensive Data Filtering: Search and filter through blockchain data with options to refine by transaction type, block height, or account, making it ideal for both casual users and developers.
 5. UI Template: The GoldRush Block Explorer can be customized with different colors and modes per deployment.
 
 ## Contributing
 
 Contributions, issues and feature requests are welcome!
-Feel free to check [issues](https://github.com/covalenthq/goldrush-revokehub/issues) page.
+Feel free to check [issues](https://github.com/covalenthq/goldrush-block-explorer-ui/issues) page.
 
 ## Show your support
 
