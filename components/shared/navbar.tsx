@@ -380,7 +380,7 @@ export const Navbar: React.FC = () => {
 
                 <div className="gbk-flex lg:gbk-ml-auto gbk-gap-8 gbk-items-center">
                     <a
-                        href="https://github.com/covalenthq/goldrush-block-explorer"
+                        href="https://github.com/covalenthq/goldrush-block-explorer-ui"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="dark:text-background-light text-background-dark gbk-w-5 gbk-h-5 gbk-flex"
