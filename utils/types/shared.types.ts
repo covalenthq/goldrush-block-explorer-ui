@@ -11,3 +11,10 @@ export interface GoldRushConfig {
     chains: Chain[];
     gtag_id?: string | null;
 }
+
+export interface SubNavProps {
+    routes: {
+        children: React.ReactNode;
+        href: string;
+    }[];
+}

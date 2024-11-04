@@ -34,6 +34,14 @@ export interface BlocksPageProps {
     };
 }
 
+export interface TransactionLayoutProps {
+    children: React.ReactNode;
+    params: {
+        tx_hash: string;
+        chain_id: Chain;
+    };
+}
+
 export interface TransactionPageProps {
     params: {
         tx_hash: string;

@@ -11,8 +11,6 @@ const TransactionsPage: React.FC<TransactionsPageProps> = ({
         <main className="gbk-flex gbk-w-full gbk-flex-col gbk-gap-4">
             <TransactionsList
                 chain_name={chain_id}
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-expect-error
                 actionable_address={(address) => ({
                     parent: Link,
                     parentProps: {
@@ -20,8 +18,6 @@ const TransactionsPage: React.FC<TransactionsPageProps> = ({
                         className: "hover:gbk-underline",
                     },
                 })}
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-expect-error
                 actionable_block={(block_height) => ({
                     parent: Link,
                     parentProps: {
@@ -29,8 +25,6 @@ const TransactionsPage: React.FC<TransactionsPageProps> = ({
                         className: "hover:gbk-underline",
                     },
                 })}
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-expect-error
                 actionable_transaction={(tx_hash) => ({
                     parent: Link,
                     parentProps: {

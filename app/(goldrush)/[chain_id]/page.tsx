@@ -40,8 +40,6 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                     <div className="gbk-flex gbk-justify-between gbk-gap-x-4">
                         <LatestBlocks
                             chain_name={chain_id}
-                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                            // @ts-expect-error
                             actionable_block={(block) => ({
                                 parent: Link,
                                 parentProps: {
@@ -49,8 +47,6 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                                     className: "hover:gbk-underline",
                                 },
                             })}
-                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                            // @ts-expect-error
                             actionable_redirect={() => ({
                                 parent: Link,
                                 parentProps: {
@@ -68,8 +64,6 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                     <div className="gbk-flex gbk-justify-between gbk-gap-x-4">
                         <LatestTransactions
                             chain_name={chain_id}
-                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                            // @ts-expect-error
                             actionable_address={(address) => ({
                                 parent: Link,
                                 parentProps: {
@@ -77,8 +71,6 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                                     className: "hover:gbk-underline",
                                 },
                             })}
-                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                            // @ts-expect-error
                             actionable_transaction={(tx_hash) => ({
                                 parent: Link,
                                 parentProps: {
@@ -86,8 +78,6 @@ const Home: React.FC<HomePageProps> = ({ params: { chain_id } }) => {
                                     className: "hover:gbk-underline",
                                 },
                             })}
-                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                            // @ts-expect-error
                             actionable_redirect={() => ({
                                 parent: Link,
                                 parentProps: {
