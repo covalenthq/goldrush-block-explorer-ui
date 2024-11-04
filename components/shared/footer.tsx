@@ -13,10 +13,6 @@ export const Footer: React.FC = () => {
             content: "GoldRush UI Kit",
             href: "https://github.com/covalenthq/goldrush-kit",
         },
-        {
-            content: "GoldRush Block Explorer",
-            href: "https://github.com/covalenthq/goldrush-block-explorer",
-        },
     ];
 
     return (

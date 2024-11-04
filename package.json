@@ -1,5 +1,5 @@
 {
-    "name": "my-app",
+    "name": "goldrush-block-explorer-ui",
     "version": "0.1.0",
     "private": true,
     "scripts": {
@@ -17,6 +17,31 @@
         "react-dom": "^18",
         "react-lottie": "^1.2.4"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/covalenthq/goldrush-block-explorer-ui.git"
+    },
+    "author": {
+        "name": "covalenthq",
+        "url": "https://covalenthq.com"
+    },
+    "bugs": {
+        "url": "https://github.com/covalenthq/goldrush-block-explorer-ui/issues"
+    },
+    "homepage": "https://github.com/covalenthq/goldrush-block-explorer-ui#readme",
+    "keywords": [
+        "block-explorer",
+        "goldrush",
+        "goldrush-kit",
+        "covalent",
+        "cross-chain",
+        "dapps-development",
+        "blockchain-data",
+        "blockchain-transactions",
+        "nft-gallery",
+        "blockchain-data-access"
+    ],
+    "license": "MIT",
     "devDependencies": {
         "@covalenthq/client-sdk": "^2.1.1",
         "@trivago/prettier-plugin-sort-imports": "^4.3.0",
