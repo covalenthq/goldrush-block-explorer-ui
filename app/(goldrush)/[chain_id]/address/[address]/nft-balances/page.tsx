@@ -19,8 +19,6 @@ const AddressNFTBalancesPage: React.FC<AddressPageProps> = ({
             <NFTWalletCollectionList
                 address={address}
                 chain_name={chain_id}
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-expect-error
                 actionable_contract={(address) => ({
                     parent: Link,
                     parentProps: {

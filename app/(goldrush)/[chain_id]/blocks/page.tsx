@@ -9,8 +9,6 @@ const BlocksPage: React.FC<BlocksPageProps> = ({ params: { chain_id } }) => {
         <main className="gbk-flex gbk-w-full gbk-flex-col gbk-gap-4">
             <BlocksList
                 chain_name={chain_id}
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-expect-error
                 actionable_block={(block) => ({
                     parent: Link,
                     parentProps: {
