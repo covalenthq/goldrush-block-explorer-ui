@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://goldrush.dev/products/goldrush/"  target="_blank" rel="noopener noreferrer">
-    <img alt="GoldRush Block Explorer - powered by Covalent" src="./repo-static/goldrush-block-explorer-banner.png" style="max-width: 100%;"/>
+    <img alt="GoldRush Block Explorer - powered by Covalent" src="./repo-static/goldrush-block-explorer-template-banner.png" style="max-width: 100%;"/>
   </a>
   <br />
 
@@ -19,46 +19,38 @@
 <h1 align="center">Beautifully designed Block Explorer template.</h1>
 
 <div align="center">
-Powered by <span><a href="https://github.com/covalenthq/goldrush-kit">GoldRush Kit.</a></span> Open-source. Customizable. 100+ Chains.
+Powered by <span><a href="https://github.com/covalenthq/goldrush-kit">GoldRush UI Kit.</a></span> Open-source & Customizable. Supports 100+ Chains.
 </div>
 
-## Ready-to-use customizable template
+## View Live Template
 
-<a href="https://goldrush-block-explorer-ui.vercel.app/">View live template</a>
+<a href="https://goldrush-block-explorer-ui.vercel.app/">https://goldrush-block-explorer-ui.vercel.app</a>
 
-## One-click Deploy
+Explore a live deployment of the template, showcasing its features and UI components in action. 
+
+## One-Click Deploy
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fcovalenthq%2Fgoldrush-block-explorer-ui&env=NEXT_PUBLIC_GOLDRUSH_API_KEY&envDescription=Visit%20Covalent%20to%20sign%20up%20for%20an%20API%20key&envLink=https%3A%2F%2Fwww.covalenthq.com%2Fplatform%2Fauth%2Fregister%2F)
 
-## Creating your own GoldRush Block Explorer
+Quickly create your own deployment on Vercel with one click. This will set up a clone of the template, ready to be customized. This will also be unlinked from the original template. 
 
-The GoldRush Block Explorer is a Template Repository. It can be cloned and modified as per different specific use cases.
+> Note: You will need your [GoldRush API key](https://goldrush.dev/platform/apikey) to set the `NEXT_PUBLIC_GOLDRUSH_API_KEY` environment variable. 
 
-1.  **Fork Repository**: Fork the repository either by clicking the `Use this template` at the top of the repository or clicking [here](https://github.com/new?owner=covalenthq&template_name=goldrush-block-explorer-ui&template_owner=covalenthq)
+## Local Setup
+This repo is set up as a *public template* so you can either **Fork** to create a linked repo to pull in updates, or select **Use this template** to create an unlinked copy that will not inherit any issues, PRs or updates from the original.
 
-2.  **Setup**:
-
-    1. Install package dependencies using `npm install`.
-
-    2. Create [.env.local](./env.local) in your root directory and add your [GoldRush API Key](https://goldrush.dev/platform/apikey). Refer to [.env.example](./.env.example) for the a list of all the environmental variables used.
-
-    > Only the `NEXT_PUBLIC_GOLDRUSH_API_KEY` environmental key is mandatory.
-
+1. Install package dependencies using: `npm install`.
+2. Create an `.env.local` in your root directory and add your [GoldRush API key](https://goldrush.dev/platform/apikey):
     ```
     NEXT_PUBLIC_GOLDRUSH_API_KEY = "<YOUR_API_KEY>"
     ```
-
-    3. To run the development server, type the following into your terminal.
-
+3. Run the template with:
     ```
     npm run dev
     ```
 
-3.  **Deployment**: Once forked, a use specific can be created. The **GoldRush Block Explorer** is powered on the frontend completely using NextJS. Natively, the it is deployed on [Vercel](https://vercel.com/), however any other deployment or server hosting tools such as Netlify, AWS, DigitalOcean can be used.
-
-## Customizing the Deployment
-
-The forked deployment can be customized for every deployment using the [GoldRush Config File](./goldrush.config.ts). The config file exports TypeScript powered const `goldrushConfig`. By default the config file will look like this
+## Customize
+This template can be quickly customized from `goldrush.config.ts`. By default, it looks like: 
 
 ```ts
 import { type GoldRushConfig } from "./utils/types/shared.types";
@@ -92,17 +84,16 @@ export const goldrushConfig: GoldRushConfig = {
 };
 ```
 
-1. **brand**: This is the customization of the `nav` bar that is rendered at the top of every page. It looks this by default
+1. `brand`: This objects sets the title and logo in the top left `nav` bar. 
 
-    <img src="./repo-static/3.1.png">
+    <img src="./repo-static/brand-example.png">
 
-    1. **title**: It is the first line of your brand. By default, it is set as `GoldRush`.
-    2. **subtitle**: It is the second line of your brand. By default, it is set as `Block Explorer`.
-    3. **logo_url**: It is the logo of your brand. By default, it is renders the GoldRush Logo. An image src of 40x40px is recommended for this.
+    A 40x40px logo size is recommended. 
 
-2. **theme**: This is an extension of the theme config passed to the [GoldRush Kit](https://github.com/covalenthq/goldrush-kit). Explore these theme settings from [here](https://goldrush-kit.vercel.app/?path=/story/theme-config--theme-config).
 
-3. **chains**: A selection of all the chain the deployment offers. The desired chains can be passed to this array in multiple formats as shown the example below. By default, an empty array (`[]`) is passed here to provide the options all the 100+ chains supported by the [GoldRush API](https://goldrush.dev/docs/networks/). As a default behavior, the home page is rendered based using the first chain thats passed in this array.
+2. `theme`: This object is an extension of the [GoldRush UI Kit](https://github.com/covalenthq/goldrush-kit) theme config. Explore the theme settings [here](https://goldrush-kit.vercel.app/?path=/story/theme-config--theme-config).
+
+3. `chains`: Can be used to limit support to specific chains. By default, this template works with all 100+ [supported chains](https://goldrush.dev/docs/networks/) with **Ethereum Mainnet** shown first. Chains can be specified using any of the following formats:
 
     ```ts
     import { ChainID, ChainName } from "@covalenthq/client-sdk";
@@ -115,24 +106,23 @@ export const goldrushConfig: GoldRushConfig = {
     ];
     ```
 
-4. **gtag_id**: This is the tag ID provided by [Google Analytics](https://developers.google.com/analytics) for realtime tracking of active users on the deployment. By default, it is `null` and is not mandatory to pass. The Google tag looks like `G-**********`.
+4. **gtag_id**: This is an optional [Google Analytics](https://developers.google.com/analytics) tag ID (format; `G-**********`) for tracking traffic to your Block Explorer.
 
 ## Features
 
-1. Real-time Block Explorer: Provides up-to-date information on blockchain transactions, blocks, and account balances in real time, giving users the latest data.
-2. Ready-to-use customizable template: Jumpstart your dApp journey with a beautifully designed UI that’s both intuitive and engaging.
-3. Cross Chain Support: Supports 100+ chains, providing a unified explorer for all your needs.
-4. Comprehensive Data Filtering: Search and filter through blockchain data with options to refine by transaction type, block height, or account, making it ideal for both casual users and developers.
-5. UI Template: The GoldRush Block Explorer can be customized with different colors and modes per deployment.
+1. **Real-Time Data Updates**: Displays up-to-date information on blocks, transactions, account balances and gas fees.
+2. **Comprehensive Search Functionality**: Search by transaction hash, block number, wallet or contract address.
+3. **Multichain**: Supports 100+ chains seamlessly, providing a unified explorer experience.
+4. **Customizable and Ready-to-Use Template**: Kickstart your dApp journey with a beautifully designed, intuitive UI that is fully customizable to match your brand.
 
 ## Contributing
 
 Contributions, issues and feature requests are welcome!
-Feel free to check [issues](https://github.com/covalenthq/goldrush-block-explorer-ui/issues) page.
+Feel free to check the [issues](https://github.com/covalenthq/goldrush-block-explorer-ui/issues) page.
 
-## Show your support
+## Show Your Support
 
-Give a ⭐️ if this project helped you!
+Give us a ⭐️ if this project helps you!
 
 ## License
 
